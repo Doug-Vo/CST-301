@@ -9,6 +9,8 @@ def precedence(op):
         return 1
     if op == '*' or op == '/':
         return 2
+    if op == '^':
+        return 3
     return 0
 
 
@@ -19,6 +21,7 @@ def applyOp(a, b, op):
     if op == '-': return a - b
     if op == '*': return a * b
     if op == '/': return a // b
+    if op == '^': return a ** b
 
 
 # Function that returns value of
@@ -120,10 +123,7 @@ def evaluate(tokens):
 
 # Driver Code
 if __name__ == "__main__":
-    print(evaluate("10 + 2 * 6"))
-    print(evaluate("100 * 2 + 12"))
-    print(evaluate("100 * ( 2 + 12 )"))
-    print(evaluate("100 * ( 2 + 12 ) / 14"))
+    print(evaluate(" 2 ^ (0 * 2) + 2 * 3 + 5"))
 
 # This code is contributed
 # by Rituraj Jain
