@@ -1,42 +1,46 @@
-from antlr4 import *
-from JavaLexer import JavaLexer
-from JavaParser import JavaParser
-from JavaListener import JavaListener
+import javalang
 import json
 
-class MyListener(JavaListener):
-    def __init__(self):
-        self.ast = {}
+def parse_java_file(file_path):
+    with open(file_path, 'r') as file:
+        # Read the Java code from the file
+        java_code = file.read()
 
-    def enterMethodDeclaration(self, ctx: JavaParser.MethodDeclarationContext):
-        method_name = ctx.Identifier().getText()
-        parameters = [param.getText() for param in ctx.formalParameters().formalParameter()]
-        self.ast[method_name] = {"type": "method", "parameters": parameters}
+    # Parse the Java code into an AST
+    parser = javalang.parser.Parser()
+    tree = parser.parse(java_code)
 
-def generate_ast(java_code, output_file="ast.json"):
-    input_stream = InputStream(java_code)
-    lexer = JavaLexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    parser = JavaParser(stream)
-    tree = parser.compilationUnit()
+    return tree
 
-    listener = MyListener()
-    walker = ParseTreeWalker()
-    walker.walk(listener, tree)
+def ast_to_json(ast):
+    # Convert the AST to a dictionary
+    ast_dict = {'type': ast.__class__.__name__}
+    if hasattr(ast, '_fields'):
+        for field in ast._fields:
+            ast_dict[field] = getattr(ast, field)
 
-    ast_json = json.dumps(listener.ast, indent=2)
+    # Convert the dictionary to a JSON string
+    return json.dumps(ast_dict, indent=2)
 
-    with open(output_file, "w") as file:
+def save_ast_to_file(ast, output_file):
+    # Convert AST to JSON
+    ast_json = ast_to_json(ast)
+
+    # Save JSON to a file
+    with open(output_file, 'w') as file:
         file.write(ast_json)
 
 if __name__ == "__main__":
-    # Read Java code from a file or user input
-    java_code = """
-    class MyClass {
-        public void myMethod(int param1, String param2) {
-            // Method body
-        }
-    }
-    """
+    # Specify the Java file path
+    java_file_path = 'YourJavaFile.java'
 
-    generate_ast(java_code)
+    # Parse the Java file into an AST
+    ast = parse_java_file('HelloWorld.java')
+
+    # Specify the output file path (JSON format)
+    output_file_path = 'ast_output.json'
+
+    # Save the AST to a file
+    save_ast_to_file(ast, output_file_path)
+
+    print(f"AST successfully created and saved to {output_file_path}")
