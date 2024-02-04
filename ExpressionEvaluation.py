@@ -9,6 +9,8 @@ def precedence(op):
         return 1
     if op == '*' or op == '/':
         return 2
+
+    # added the power function with the highest precedence
     if op == '^':
         return 3
     return 0
@@ -21,6 +23,8 @@ def applyOp(a, b, op):
     if op == '-': return a - b
     if op == '*': return a * b
     if op == '/': return a // b
+
+    # using the power function with the '^' symbol
     if op == '^': return a ** b
 
 
@@ -126,5 +130,7 @@ if __name__ == "__main__":
     print(evaluate(" 2 ^ (0 * 2) + 2 * 3 + 5"))
     print(evaluate(" 3 ^ 2 * 3 + 1"))
     print(evaluate(" 4 * 3 + 2 * 8 ^ 0"))
+
+
 # This code is contributed
 # by Rituraj Jain
