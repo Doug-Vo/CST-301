@@ -124,6 +124,7 @@ def evaluate(tokens):
 # Driver Code
 if __name__ == "__main__":
     print(evaluate(" 2 ^ (0 * 2) + 2 * 3 + 5"))
-
+    print(evaluate(" 3 ^ 2 * 3 + 1"))
+    print(evaluate(" 4 * 3 + 2 * 8 ^ 0"))
 # This code is contributed
 # by Rituraj Jain
