@@ -134,6 +134,5 @@ if __name__ == "__main__":
     # answer = 14
     print(evaluate(" 4 * 3 + 2 * 8 ^ 0"))
 
-
 # This code is contributed
 # by Rituraj Jain
