@@ -1,5 +1,5 @@
 from typing import Dict
-
+import json
 def describe_node(node, indent=0):
     if isinstance(node, dict):
         for key, value in node.items():
@@ -37,175 +37,14 @@ def classify_nodes(node, node_types):
         for item in node:
             classify_nodes(item, node_types)
 
-# Example AST (provided AST with added missing elements)
-ast = {
-    "__class__": "CompilationUnit",
-    "imports": [],
-    "types": [
-        {
-            "__class__": "ClassDeclaration",
-            "modifiers": "{'public'}",
-            "annotations": [],
-            "name": "Example",
-            "body": [
-                {
-                    "__class__": "FieldDeclaration",
-                    "modifiers": "{'private'}",
-                    "annotations": [],
-                    "type": {
-                        "__class__": "ReferenceType",
-                        "name": "ArrayList",
-                        "dimensions": [],
-                        "arguments": [
-                            {
-                                "__class__": "TypeArgument",
-                                "type": {
-                                    "__class__": "ReferenceType",
-                                    "name": "String",
-                                    "dimensions": []
-                                }
-                            }
-                        ]
-                    },
-                    "declarators": [
-                        {
-                            "__class__": "VariableDeclarator",
-                            "name": "names",
-                            "dimensions": []
-                        }
-                    ]
-                },
-                {
-                    "__class__": "ConstructorDeclaration",
-                    "modifiers": "{'public'}",
-                    "annotations": [],
-                    "name": "Example",
-                    "parameters": [],
-                    "body": [
-                        {
-                            "__class__": "StatementExpression",
-                            "expression": {
-                                "__class__": "Assignment",
-                                "expressionl": {
-                                    "__class__": "MemberReference",
-                                    "prefix_operators": [],
-                                    "postfix_operators": [],
-                                    "qualifier": "",
-                                    "selectors": [],
-                                    "member": "names"
-                                },
-                                "value": {
-                                    "__class__": "ClassCreator",
-                                    "prefix_operators": [],
-                                    "postfix_operators": [],
-                                    "selectors": [],
-                                    "type": {
-                                        "__class__": "ReferenceType",
-                                        "name": "ArrayList",
-                                        "arguments": []
-                                    },
-                                    "arguments": []
-                                },
-                                "type": "="
-                            }
-                        }
-                    ]
-                },
-                {
-                    "__class__": "MethodDeclaration",
-                    "modifiers": "{'public'}",
-                    "annotations": [],
-                    "name": "addName",
-                    "parameters": [
-                        {
-                            "__class__": "FormalParameter",
-                            "modifiers": "set()",
-                            "annotations": [],
-                            "type": {
-                                "__class__": "ReferenceType",
-                                "name": "String",
-                                "dimensions": []
-                            },
-                            "name": "name",
-                            "varargs": False
-                        }
-                    ],
-                    "body": [
-                        {
-                            "__class__": "StatementExpression",
-                            "expression": {
-                                "__class__": "MethodInvocation",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "names",
-                                "selectors": [],
-                                "arguments": [
-                                    {
-                                        "__class__": "MemberReference",
-                                        "prefix_operators": [],
-                                        "postfix_operators": [],
-                                        "qualifier": "",
-                                        "selectors": [],
-                                        "member": "name"
-                                    }
-                                ],
-                                "member": "add"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "__class__": "MethodDeclaration",
-                    "modifiers": "{'public'}",
-                    "annotations": [],
-                    "return_type": {
-                        "__class__": "ReferenceType",
-                        "name": "List",
-                        "dimensions": [],
-                        "arguments": [
-                            {
-                                "__class__": "TypeArgument",
-                                "type": {
-                                    "__class__": "ReferenceType",
-                                    "name": "String",
-                                    "dimensions": []
-                                }
-                            }
-                        ]
-                    },
-                    "name": "getNames",
-                    "parameters": [],
-                    "body": [
-                        {
-                            "__class__": "ReturnStatement",
-                            "expression": {
-                                "__class__": "ClassCreator",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "selectors": [],
-                                "type": {
-                                    "__class__": "ReferenceType",
-                                    "name": "ArrayList",
-                                    "arguments": []
-                                },
-                                "arguments": [
-                                    {
-                                        "__class__": "MemberReference",
-                                        "prefix_operators": [],
-                                        "postfix_operators": [],
-                                        "qualifier": "",
-                                        "selectors": [],
-                                        "member": "names"
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
+
+# Open the JSON file in read mode
+with open('ast.json', 'r') as json_file:
+    # Load the JSON data from the file
+    ast = json.load(json_file)
+
+
+
 
 # Describe each node
 print("Describing each node:")
