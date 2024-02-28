@@ -1,4 +1,4 @@
-import ArrayList
+import ArrayList;
 
 public class Example {
   private ArrayList<String> names;

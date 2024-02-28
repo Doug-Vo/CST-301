@@ -1,9 +1,26 @@
 import javalang
+import json
 
-class Node:
-    def __init__(self, **kwargs):
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+def read_java_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            java_source = file.read()
+        return java_source
+    except FileNotFoundError:
+        print(f"File not found: {file_path}")
+        return None
+
+def ast_to_dict(node):
+    if isinstance(node, javalang.ast.Node):
+        node_dict = {"__class__": node.__class__.__name__}
+        for name, value in node.__dict__.items():
+            if name != '_position' and value is not None:
+                node_dict[name] = ast_to_dict(value)
+        return node_dict
+    elif isinstance(node, list):
+        return [ast_to_dict(item) for item in node]
+    else:
+        return node
 
 def create_ast(java_source):
     try:
@@ -13,87 +30,20 @@ def create_ast(java_source):
         print("Java Syntax Error:", e)
         return None
 
-def print_ast(node, depth=0):
-    indent = "  " * depth
-    if isinstance(node, Node):
-        print(f"{indent}{type(node).__name__}:")
-        for field, value in node.__dict__.items():
-            if isinstance(value, (list, tuple)):
-                for item in value:
-                    print_ast(item, depth + 1)
-            elif isinstance(value, Node):
-                print_ast(value, depth + 1)
-            else:
-                print(f"{indent}  {field}: {value}")
-    elif isinstance(node, (list, tuple)):
-        for item in node:
-            print_ast(item, depth)
-    else:
-        print(f"{indent}{node}")
+def save_ast_to_json(ast, output_file):
+    ast_dict = ast_to_dict(ast)
+    with open(output_file, 'w') as json_file:
+        json.dump(ast_dict, json_file, default=str, indent=2)
 
 if __name__ == "__main__":
-    # Java source code snippet
-    java_source_code = """
-     public class Example {
-  private ArrayList<String> names;
+    # Updated file paths
+    file_path = "HelloWorld.java"
+    output_json_file = "ast.json"
 
-  public Example() {
-    names = new ArrayList<>();
-  }
+    java_source_code = read_java_file(file_path)
 
-  public void addName(String name) {
-    names.add(name);
-  }
-
-  public List<String> getNames() {
-    return new ArrayList<>(names);
-  }
-}
-    """
-
-    # Generate AST tree
-    java_ast = create_ast(java_source_code)
-    if java_ast:
-        ast_tree = Node(name="compilationUnit", children=java_ast)
-        print_ast(ast_tree)
-
-# Add the AST node definitions here
-
-
-
-# Add the AST node definitions here
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if java_source_code:
+        java_ast = create_ast(java_source_code)
+        if java_ast:
+            save_ast_to_json(java_ast, output_json_file)
+            print(f"AST has been saved to {output_json_file}")

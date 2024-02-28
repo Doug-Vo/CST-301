@@ -1,6 +1,13 @@
 {
   "__class__": "CompilationUnit",
-  "imports": [],
+  "imports": [
+    {
+      "__class__": "Import",
+      "path": "ArrayList",
+      "static": false,
+      "wildcard": false
+    }
+  ],
   "types": [
     {
       "__class__": "ClassDeclaration",
