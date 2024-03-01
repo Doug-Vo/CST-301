@@ -2,8 +2,6 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-
-doc = ""
 Java_link = ""
 def describe_node(node, indent=0):
     result = []
@@ -13,7 +11,7 @@ def describe_node(node, indent=0):
                 result.append(f"{' ' * indent}Class: {value}")
             elif key == "imports" and isinstance(value, list):
                 for import_node in value:
-                    result.extend(describe_import(import_node, doc, indent + 2))
+                    result.extend(describe_import(import_node, indent + 2))
             else:
                 result.append(f"{' ' * indent}{key}:")
                 result.extend(describe_node(value, indent + 2))
@@ -60,7 +58,7 @@ def read_java_documentation(url):
     return result
 
 
-def describe_import(import_node, doc, indent=0):
+def describe_import(import_node, indent=0):
     global Java_link
     result = []
     if isinstance(import_node, dict) and "__class__" in import_node and import_node["__class__"] == "Import":
@@ -93,7 +91,7 @@ def classify_nodes(node, node_types):
                     classify_nodes(value, node_types)
                 elif key == "imports" and isinstance(value, list):
                     for import_node in value:
-                        describe_import(import_node, doc)
+                        describe_import(import_node)
     elif isinstance(node, list):
         for item in node:
             classify_nodes(item, node_types)
