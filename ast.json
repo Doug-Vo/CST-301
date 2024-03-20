@@ -3,7 +3,19 @@
   "imports": [
     {
       "__class__": "Import",
-      "path": "ArrayList",
+      "path": "java.sql.Connection",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "java.sql.SQLException",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "java.sql.Statement",
       "static": false,
       "wildcard": false
     }
@@ -13,76 +25,18 @@
       "__class__": "ClassDeclaration",
       "modifiers": "{'public'}",
       "annotations": [],
-      "name": "Example",
+      "name": "X",
       "body": [
-        {
-          "__class__": "FieldDeclaration",
-          "modifiers": "{'private'}",
-          "annotations": [],
-          "type": {
-            "__class__": "ReferenceType",
-            "name": "ArrayList",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "String",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "declarators": [
-            {
-              "__class__": "VariableDeclarator",
-              "name": "names",
-              "dimensions": []
-            }
-          ]
-        },
-        {
-          "__class__": "ConstructorDeclaration",
-          "modifiers": "{'public'}",
-          "annotations": [],
-          "name": "Example",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "Assignment",
-                "expressionl": {
-                  "__class__": "MemberReference",
-                  "prefix_operators": [],
-                  "postfix_operators": [],
-                  "qualifier": "",
-                  "selectors": [],
-                  "member": "names"
-                },
-                "value": {
-                  "__class__": "ClassCreator",
-                  "prefix_operators": [],
-                  "postfix_operators": [],
-                  "selectors": [],
-                  "type": {
-                    "__class__": "ReferenceType",
-                    "name": "ArrayList",
-                    "arguments": []
-                  },
-                  "arguments": []
-                },
-                "type": "="
-              }
-            }
-          ]
-        },
         {
           "__class__": "MethodDeclaration",
           "modifiers": "{'public'}",
           "annotations": [],
-          "name": "addName",
+          "return_type": {
+            "__class__": "BasicType",
+            "name": "boolean",
+            "dimensions": []
+          },
+          "name": "insertPrIssue",
           "parameters": [
             {
               "__class__": "FormalParameter",
@@ -93,78 +47,448 @@
                 "name": "String",
                 "dimensions": []
               },
-              "name": "name",
+              "name": "pr",
+              "varargs": false
+            },
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "String",
+                "dimensions": []
+              },
+              "name": "issue",
+              "varargs": false
+            },
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "String",
+                "dimensions": []
+              },
+              "name": "projName",
               "varargs": false
             }
           ],
           "body": [
             {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "names",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "Connection",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "con",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "MethodInvocation",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "",
+                    "qualifier": "DBUtil",
                     "selectors": [],
-                    "member": "name"
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "dbcon"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "user"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "pswd"
+                      }
+                    ],
+                    "member": "getConnection"
                   }
-                ],
-                "member": "add"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "List",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "String",
-                  "dimensions": []
                 }
-              }
-            ]
-          },
-          "name": "getNames",
-          "parameters": [],
-          "body": [
+              ]
+            },
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "BasicType",
+                "name": "int",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "count",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "0"
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "TryStatement",
+              "block": [
+                {
+                  "__class__": "LocalVariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "ReferenceType",
+                    "name": "Statement",
+                    "dimensions": []
+                  },
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "comandoSql",
+                      "dimensions": [],
+                      "initializer": {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "con",
+                        "selectors": [],
+                        "arguments": [],
+                        "member": "createStatement"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "__class__": "LocalVariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "ReferenceType",
+                    "name": "String",
+                    "dimensions": []
+                  },
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "sql",
+                      "dimensions": [],
+                      "initializer": {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "\"INSERT INTO pr_issue (pr, issue, projName) VALUES (?, ?, ?)\""
+                      }
+                    }
+                  ]
+                },
+                {
+                  "__class__": "LocalVariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "ReferenceType",
+                    "name": "PreparedStatement",
+                    "dimensions": []
+                  },
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "pstmt",
+                      "dimensions": [],
+                      "initializer": {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "con",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "sql"
+                          }
+                        ],
+                        "member": "prepareStatement"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "pstmt",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "1"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "pr"
+                      }
+                    ],
+                    "member": "setString"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "pstmt",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "2"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "issue"
+                      }
+                    ],
+                    "member": "setString"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "pstmt",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "3"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "projName"
+                      }
+                    ],
+                    "member": "setString"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "Assignment",
+                    "expressionl": {
+                      "__class__": "MemberReference",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "",
+                      "selectors": [],
+                      "member": "count"
+                    },
+                    "value": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "pstmt",
+                      "selectors": [],
+                      "arguments": [],
+                      "member": "executeUpdate"
+                    },
+                    "type": "="
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "pstmt",
+                    "selectors": [],
+                    "arguments": [],
+                    "member": "close"
+                  }
+                }
+              ],
+              "catches": [
+                {
+                  "__class__": "CatchClause",
+                  "parameter": {
+                    "__class__": "CatchClauseParameter",
+                    "types": [
+                      "SQLException"
+                    ],
+                    "name": "e"
+                  },
+                  "block": [
+                    {
+                      "__class__": "StatementExpression",
+                      "expression": {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "e",
+                        "selectors": [],
+                        "arguments": [],
+                        "member": "printStackTrace"
+                      }
+                    },
+                    {
+                      "__class__": "ReturnStatement",
+                      "expression": {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "finally_block": [
+                {
+                  "__class__": "TryStatement",
+                  "block": [
+                    {
+                      "__class__": "IfStatement",
+                      "condition": {
+                        "__class__": "BinaryOperation",
+                        "operator": "!=",
+                        "operandl": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "con"
+                        },
+                        "operandr": {
+                          "__class__": "Literal",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "value": "null"
+                        }
+                      },
+                      "then_statement": {
+                        "__class__": "BlockStatement",
+                        "statements": [
+                          {
+                            "__class__": "StatementExpression",
+                            "expression": {
+                              "__class__": "MethodInvocation",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "con",
+                              "selectors": [],
+                              "arguments": [],
+                              "member": "close"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "catches": [
+                    {
+                      "__class__": "CatchClause",
+                      "parameter": {
+                        "__class__": "CatchClauseParameter",
+                        "types": [
+                          "SQLException"
+                        ],
+                        "name": "e"
+                      },
+                      "block": [
+                        {
+                          "__class__": "StatementExpression",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "e",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "printStackTrace"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "__class__": "ReturnStatement",
               "expression": {
-                "__class__": "ClassCreator",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "selectors": [],
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "ArrayList",
-                  "arguments": []
+                "__class__": "BinaryOperation",
+                "operator": ">",
+                "operandl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "count"
                 },
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "member": "names"
-                  }
-                ]
+                "operandr": {
+                  "__class__": "Literal",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "selectors": [],
+                  "value": "0"
+                }
               }
             }
           ]

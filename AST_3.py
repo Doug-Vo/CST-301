@@ -3,6 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 Java_link = ""
+
+file = open("output.txt", "w")
 def describe_node(node, indent=0):
     result = []
     if isinstance(node, dict):
@@ -40,13 +42,6 @@ def read_java_documentation(url):
             print("Java documentation content not found on this page.")
 
         # Extract the text content
-        documentation_content = soup.find('div', class_="inheritance")
-        if documentation_content:
-            result += documentation_content.get_text(separator='')
-        else:
-            print("Java documentation content not found on this page.")
-
-        # Extract the text content
         documentation_content = soup.find('section', class_="class-description")
         if documentation_content:
             result += documentation_content.get_text(separator='')
@@ -63,10 +58,13 @@ def describe_import(import_node, indent=0):
     result = []
     if isinstance(import_node, dict) and "__class__" in import_node and import_node["__class__"] == "Import":
         path = import_node.get("path")
-        print(path)
         if path:
             documentation_link = f"https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/{path.replace('.', '/')}.html"
             Java_link = documentation_link
+            # Call the function to read the Java documentation content
+            java_doc_content = read_java_documentation(documentation_link)
+
+            file.write(str(java_doc_content))
             result.append(f"{' ' * indent}Imported: {path}")
             result.append(f"{' ' * (indent + 2)}Documentation: {documentation_link}")
     return result
@@ -127,9 +125,3 @@ for item in description_list:
 
 for item in classification_list:
     print(item)
-
-# Call the function to read the Java documentation content
-java_doc_content = read_java_documentation(Java_link)
-
-file = open("output.txt", "w")
-file.write(str(java_doc_content))
