@@ -1,127 +1,224 @@
 import json
-import requests
-from bs4 import BeautifulSoup
+from g4f.client import Client
 
-Java_link = ""
+options = {
+    "Application": "third party apps or plugins for specific use attached to the system",
+    "Application Performance Manager": "monitors performance or benchmark",
+    "Big Data": "API's that deal with storing large amounts of data. with variety of formats",
+    "Cloud": "APUs for software and services that run on the Internet",
+    "Computer Graphics": "Manipulating visual content",
+    "Data Structure": "Data structures patterns (e.g., collections, lists, trees)",
+    "Databases": "Databases or metadata",
+    "Software Development and IT": "Libraries for version control, continuous integration and continuous delivery",
+    "Error Handling": "response and recovery procedures from error conditions",
+    "Event Handling": "answers to event like listeners",
+    "Geographic Information System": "Geographically referenced information",
+    "Input/Output": "read, write data",
+    "Interpreter": "compiler or interpreter features",
+    "Internationalization": "integrate and infuse international, intercultural, and global dimensions",
+    "Logic": "frameworks, patterns like commands, controls, or architecture-oriented classes",
+    "Language": "internal language features and conversions",
+    "Logging": "log registry for the app",
+    "Machine Learning": "ML support like build a model based on training data",
+    "Microservices/Services": "Independently deployable smaller services. Interface between two different applications so that they can communicate with each other",
+    "Multimedia": "Representation of information with text, audio, video",
+    "Multithread": "Support for concurrent execution",
+    "Natural Language Processing": "Process and analyze natural language data",
+    "Network": "Web protocols, sockets RMI APIs",
+    "Operating System": "APIs to access and manage a computer's resources",
+    "Parser": "Breaks down data into recognized pieces for further analysis",
+    "Search": "API for web searching",
+    "Security": "Crypto and secure protocols",
+    "Setup": "Internal app configurations",
+    "User Interface": "Defines forms, screens, visual controls",
+    "Utility": "third party libraries for general use",
+    "Test": "test automation"
+}
 
-file = open("output.txt", "w")
-def describe_node(node, indent=0):
-    result = []
-    if isinstance(node, dict):
-        for key, value in node.items():
-            if key == "__class__":
-                result.append(f"{' ' * indent}Class: {value}")
-            elif key == "imports" and isinstance(value, list):
-                for import_node in value:
-                    result.extend(describe_import(import_node, indent + 2))
-            else:
-                result.append(f"{' ' * indent}{key}:")
-                result.extend(describe_node(value, indent + 2))
-    elif isinstance(node, list):
-        for item in node:
-            result.extend(describe_node(item, indent))
-    elif isinstance(node, str):
-        result.append(f"{' ' * indent}Value: {node}")
-    return result
+def extract_functions(ast):
+    functions = set()
 
-def read_java_documentation(url):
-    result = ""
-    # Send a GET request to the URL
-    response = requests.get(url)
+    def traverse(node):
+        if isinstance(node, dict):
+            if "__class__" in node:
+                if node["__class__"] == "MethodInvocation":
+                    function_name = node.get("member")
+                    if function_name:
+                        functions.add(function_name)
+                for key, value in node.items():
+                    traverse(value)
+            elif "imports" in node:
+                for import_node in node["imports"]:
+                    traverse(import_node)
+        elif isinstance(node, list):
+            for item in node:
+                traverse(item)
 
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Parse the HTML content
-        soup = BeautifulSoup(response.content, 'html.parser')
+    traverse(ast)
+    return functions
 
-        # Extract the text content
-        documentation_content = soup.find('div', class_="header")
-        if documentation_content:
-            result += documentation_content.get_text(separator='')
-        else:
-            print("Java documentation content not found on this page.")
-
-        # Extract the text content
-        documentation_content = soup.find('section', class_="class-description")
-        if documentation_content:
-            result += documentation_content.get_text(separator='')
-        else:
-            print("Java documentation content not found on this page.")
-    else:
-        print("Failed to retrieve Java documentation. Status code: {}".format(response.status_code))
-
-    return result
-
-
-def describe_import(import_node, indent=0):
-    global Java_link
-    result = []
-    if isinstance(import_node, dict) and "__class__" in import_node and import_node["__class__"] == "Import":
-        path = import_node.get("path")
-        if path:
-            documentation_link = f"https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/{path.replace('.', '/')}.html"
-            Java_link = documentation_link
-            # Call the function to read the Java documentation content
-            java_doc_content = read_java_documentation(documentation_link)
-
-            file.write(str(java_doc_content))
-            result.append(f"{' ' * indent}Imported: {path}")
-            result.append(f"{' ' * (indent + 2)}Documentation: {documentation_link}")
-    return result
-
-def classify_nodes(node, node_types):
+def extract_unique_class(node):
+    unique_class = set()  # To store unique class
     if isinstance(node, dict):
         if "__class__" in node:
-            node_type = node["__class__"]
-            if node_type in node_types:
-                node_types[node_type]["count"] += 1
-            else:
-                node_types[node_type] = {"count": 1, "fields": set()}
-            for key, value in node.items():
-                if key != "__class__":
-                    if isinstance(value, str):
-                        if value.isidentifier():
-                            if value.islower():
-                                node_types[node_type].setdefault("variables", set()).add(value)
-                            else:
-                                node_types[node_type].setdefault("classes", set()).add(value)
-                        else:
-                            node_types[node_type].setdefault("literals", set()).add(value)
-                    classify_nodes(value, node_types)
-                elif key == "imports" and isinstance(value, list):
-                    for import_node in value:
-                        describe_import(import_node)
+            if node["__class__"] == "ReferenceType":
+                unique_class.add(node["name"])
+            elif node["__class__"] == "ClassDeclaration":
+                unique_class.add(node["name"])
+        for key, value in node.items():
+            unique_class.update(extract_unique_class(value))  # Recursively traverse the JSON structure
     elif isinstance(node, list):
         for item in node:
-            classify_nodes(item, node_types)
+            unique_class.update(extract_unique_class(item))  # Recursively traverse the JSON structure
+    return unique_class
 
+# Read AST from JSON file
+with open('ast.json', 'r') as file:
+    ast = json.load(file)
 
-# Open the JSON file in read mode
-with open('ast.json', 'r') as json_file:
-    # Load the JSON data from the file
-    ast = json.load(json_file)
+# Extract unique class
+unique_class = extract_unique_class(ast)
 
-# Describe each node and store in a list
-description_list = describe_node(ast)
+# Initialize the file for writing
+with open('output.txt', 'w') as output_file:
+    client = Client()
+    messages = [
+        {"role": "system",
+         "content": "You are attempting to classify the Java classes into one of the 31 given options"},
+        {"role": "system",
+         "content": "As you answering, only answer one simple word"},
+        {"role": "system",
+         "content": "Answer in the format of: Class (the given class) - LLM-domain - simulated domain"}
+    ]
 
-# Classify nodes in-depth
-node_types = {}
-classify_nodes(ast, node_types)
+    def ask_gpt(classes):
+        # Construct the prompt with the object description and option descriptions
+        prompt = f"Here's the list of LLM domain options:\n {options}\n"
+        prompt += "What is the LLM domain and the simulated domain of: \n"
+        for class_info in classes:
+            prompt += class_info + ", "
+        prompt += "X is a created class in the Java code"
+        prompt += "Please pick one of the 31 options for the LLM domain, and one for the simulated domain for each class"
+        prompt += " and a sentence to give a reasoning for your choice"
+        prompt += " the answers should be in the form of:\n"
+        prompt += " Classes: \n- Chosen LLM-domain\n - Simulated Domain\n - Reasoning in one sentence "
+        messages.append({"role": "user", "content": prompt})
+        response = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=messages,
+            stream=True
+        )
+        return response
 
-# Store in-depth classification in a list
-classification_list = []
-for node_type, info in node_types.items():
-    classification_list.append(f"Node Type: {node_type}, Count: {info['count']}, Fields: {', '.join(info['fields'])}")
-    if "variables" in info:
-        classification_list.append(f"  Variables: {', '.join(info['variables'])}")
-    if "literals" in info:
-        classification_list.append(f"  Literals: {', '.join(info['literals'])}")
-    if "classes" in info:
-        classification_list.append(f"  Classes: {', '.join(info['classes'])}")
+    gpt_response = ask_gpt(unique_class)
+    counter = 0
+    answer = ""
+    for chunk in gpt_response:
+        if chunk.choices[0].delta.content:
+            answer += (chunk.choices[0].delta.content.strip('*') or "")
 
-# Print or use the lists as needed
-for item in description_list:
-    print(item)
+    # Write the classification results to the file
+    output_file.write("Classification Results:\n")
+    output_file.write(answer + "\n")
 
-for item in classification_list:
-    print(item)
+    def extract_classes_and_functions(ast_tree, imports):
+        classes_and_functions = {}
+        def traverse(node):
+            if isinstance(node, dict):
+                if "__class__" in node:
+                    if node["__class__"] == "MethodInvocation":
+                        qualifier = node.get("qualifier")
+                        if qualifier:
+                            class_name = qualifier.split('.')[-1]  # Extract class name from the qualifier
+                            class_name = imports.get(class_name, class_name)  # Replace object name with class name
+                            method_name = node.get("member")
+                            if class_name not in classes_and_functions:
+                                classes_and_functions[class_name] = set()
+                            classes_and_functions[class_name].add(method_name)
+                    # Traverse children recursively
+                    for key, value in node.items():
+                        if key != "name":  # Skip "name" field
+                            traverse(value)
+            elif isinstance(node, list):
+                for item in node:
+                    traverse(item)
+
+        traverse(ast_tree)
+        return classes_and_functions
+
+    def find_imported_class(ast_tree, variable_name):
+        class_name = None
+        def traverse(node):
+            nonlocal class_name
+            if isinstance(node, dict):
+                if "__class__" in node:
+                    if node["__class__"] == "LocalVariableDeclaration":
+                        for declarator in node.get("declarators", []):
+                            if declarator.get("name") == variable_name:
+                                type_node = node.get("type")
+                                if type_node and "__class__" in type_node and type_node["__class__"] == "ReferenceType":
+                                    class_name = type_node.get("name")
+                                    return
+                    # Traverse children recursively
+                    for key, value in node.items():
+                        traverse(value)
+            elif isinstance(node, list):
+                for item in node:
+                    traverse(item)
+
+        traverse(ast_tree)
+        return class_name
+
+    # Extract imported classes
+    imports = {}
+    for item in ast["imports"]:
+        class_name = item["path"].split('.')[-1]
+        imports[class_name] = item["path"]
+
+    classes_and_functions = extract_classes_and_functions(ast, imports)
+
+    # Convert the dictionary to the desired format
+    result = []
+    for functions in classes_and_functions.items():
+        # Extracting the second part from each tuple
+        result += list(functions[1])
+
+    messages = [
+        {"role": "system",
+         "content": "You are attempting to give me a summary of these functions"},
+        {"role": "system",
+         "content": "As you answering, only answer one sentence"},
+        {"role": "system",
+         "content": "Answer in the format of: function - class it belongs to - summary of the function"}
+    ]
+
+    def ask_gpt_function(functions):
+        # Construct the prompt with the object description and option descriptions
+        prompt = "Using the classes from the previous question "
+        prompt += "I want you to list these functions: "
+        for func_info in functions:
+            prompt += func_info + ", "
+
+        prompt += "in the form of:\n"
+        prompt += "Functions— function name, class it belongs to and the summary with 1 sentence."
+        prompt += "For example: createStatement() - Connection - <summary of createStatement()>"
+        prompt += "Make sure to only fit one class for one function, if there are many classes, only pick one"
+        messages.append({"role": "user", "content": prompt})
+        response = client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=messages,
+            stream=True
+        )
+        return response
+
+    gpt_response = ask_gpt_function(result)
+    answer = ""
+    for chunk in gpt_response:
+        if chunk.choices[0].delta.content:
+            answer += (chunk.choices[0].delta.content.strip('*') or "")
+
+    # Write the function summaries to the file
+    output_file.write("\nFunction Summaries:\n")
+    output_file.write(answer + "\n")
+
+print("Output written to output.txt")
