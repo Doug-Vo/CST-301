@@ -46,7 +46,7 @@
         {
           "__class__": "FieldDeclaration",
           "documentation": "/**\n     * Character separating field names that are to be used in sequence as fallbacks for a single column\n     * (e.g. \"author/editor\" to use editor where author is not set):\n     */",
-          "modifiers": "{'static', 'private', 'final'}",
+          "modifiers": "{'final', 'static', 'private'}",
           "annotations": [],
           "type": {
             "__class__": "ReferenceType",
@@ -70,7 +70,7 @@
         },
         {
           "__class__": "FieldDeclaration",
-          "modifiers": "{'static', 'private', 'final'}",
+          "modifiers": "{'final', 'static', 'private'}",
           "annotations": [],
           "type": {
             "__class__": "ReferenceType",
