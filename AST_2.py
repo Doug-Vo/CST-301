@@ -65,7 +65,7 @@ def describe_import(import_node, indent=0):
         path = import_node.get("path")
         print(path)
         if path:
-            documentation_link = f"https://docs.oracle.com/en/java/javase/21/docs/api/java.sql/{path.replace('.', '/')}.html"
+            documentation_link = f"https://docs.oracle.com/javase/8/docs/api/{path.replace('.', '/')}.html"
             Java_link = documentation_link
             result.append(f"{' ' * indent}Imported: {path}")
             result.append(f"{' ' * (indent + 2)}Documentation: {documentation_link}")
