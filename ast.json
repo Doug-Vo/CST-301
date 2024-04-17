@@ -2,30 +2,36 @@
   "__class__": "CompilationUnit",
   "package": {
     "__class__": "PackageDeclaration",
-    "name": "org.jabref.model.entry.field"
+    "name": "org.jabref.benchmarks"
   },
   "imports": [
     {
       "__class__": "Import",
-      "path": "org.jabref.model.strings.StringUtil",
+      "path": "java.io.IOException",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.util.OptionalUtil",
+      "path": "java.io.StringReader",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.util",
+      "path": "java.io.StringWriter",
       "static": false,
-      "wildcard": true
+      "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.util.function.Predicate",
+      "path": "java.util.List",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "java.util.Random",
       "static": false,
       "wildcard": false
     },
@@ -34,19 +40,217 @@
       "path": "java.util.stream.Collectors",
       "static": false,
       "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.Globals",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.exporter.BibtexDatabaseWriter",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.exporter.SavePreferences",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.formatter.bibtexfields.HtmlToLatexFormatter",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.importer.ParserResult",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.importer.fileformat.BibtexParser",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.layout.format.HTMLChars",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.layout.format.LatexToUnicodeFormatter",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.search.SearchQuery",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.Defaults",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.database.BibDatabase",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.database.BibDatabaseContext",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.database.BibDatabaseMode",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.database.BibDatabaseModeDetection",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.entry.BibEntry",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.entry.BibEntryTypesManager",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.entry.field.StandardField",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.entry.field.UnknownField",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.groups.GroupHierarchyType",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.groups.KeywordGroup",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.groups.WordKeywordGroup",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.metadata.MetaData",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.model.util.DummyFileUpdateMonitor",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.preferences.JabRefPreferences",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.Main",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.annotations.Benchmark",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.annotations.Scope",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.annotations.Setup",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.annotations.State",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.openjdk.jmh.runner.RunnerException",
+      "static": false,
+      "wildcard": false
+    },
+    {
+      "__class__": "Import",
+      "path": "org.mockito.Mockito.mock",
+      "static": true,
+      "wildcard": false
     }
   ],
   "types": [
     {
       "__class__": "ClassDeclaration",
       "modifiers": "{'public'}",
-      "annotations": [],
-      "name": "FieldFactory",
+      "annotations": [
+        {
+          "__class__": "Annotation",
+          "name": "State",
+          "element": {
+            "__class__": "MemberReference",
+            "prefix_operators": [],
+            "postfix_operators": [],
+            "qualifier": "Scope",
+            "selectors": [],
+            "member": "Thread"
+          }
+        }
+      ],
+      "name": "Benchmarks",
       "body": [
         {
           "__class__": "FieldDeclaration",
-          "documentation": "/**\n     * Character separating field names that are to be used in sequence as fallbacks for a single column\n     * (e.g. \"author/editor\" to use editor where author is not set):\n     */",
-          "modifiers": "{'final', 'static', 'private'}",
+          "modifiers": "{'private'}",
           "annotations": [],
           "type": {
             "__class__": "ReferenceType",
@@ -56,21 +260,42 @@
           "declarators": [
             {
               "__class__": "VariableDeclarator",
-              "name": "FIELD_OR_SEPARATOR",
+              "name": "bibtexString",
+              "dimensions": []
+            }
+          ]
+        },
+        {
+          "__class__": "FieldDeclaration",
+          "modifiers": "{'private', 'final'}",
+          "annotations": [],
+          "type": {
+            "__class__": "ReferenceType",
+            "name": "BibDatabase",
+            "dimensions": []
+          },
+          "declarators": [
+            {
+              "__class__": "VariableDeclarator",
+              "name": "database",
               "dimensions": [],
               "initializer": {
-                "__class__": "Literal",
+                "__class__": "ClassCreator",
                 "prefix_operators": [],
                 "postfix_operators": [],
                 "selectors": [],
-                "value": "\"/\""
+                "type": {
+                  "__class__": "ReferenceType",
+                  "name": "BibDatabase"
+                },
+                "arguments": []
               }
             }
           ]
         },
         {
           "__class__": "FieldDeclaration",
-          "modifiers": "{'final', 'static', 'private'}",
+          "modifiers": "{'private'}",
           "annotations": [],
           "type": {
             "__class__": "ReferenceType",
@@ -80,461 +305,570 @@
           "declarators": [
             {
               "__class__": "VariableDeclarator",
-              "name": "DELIMITER",
-              "dimensions": [],
-              "initializer": {
-                "__class__": "Literal",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "selectors": [],
-                "value": "\";\""
-              }
+              "name": "latexConversionString",
+              "dimensions": []
+            }
+          ]
+        },
+        {
+          "__class__": "FieldDeclaration",
+          "modifiers": "{'private'}",
+          "annotations": [],
+          "type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "declarators": [
+            {
+              "__class__": "VariableDeclarator",
+              "name": "htmlConversionString",
+              "dimensions": []
             }
           ]
         },
         {
           "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "String",
-            "dimensions": []
-          },
-          "name": "serializeOrFields",
-          "parameters": [
+          "modifiers": "{'public'}",
+          "annotations": [
             {
-              "__class__": "FormalParameter",
+              "__class__": "Annotation",
+              "name": "Setup"
+            }
+          ],
+          "name": "init",
+          "parameters": [],
+          "throws": [
+            "Exception"
+          ],
+          "body": [
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "Assignment",
+                "expressionl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "Globals",
+                  "selectors": [],
+                  "member": "prefs"
+                },
+                "value": {
+                  "__class__": "MethodInvocation",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "JabRefPreferences",
+                  "selectors": [],
+                  "arguments": [],
+                  "member": "getInstance"
+                },
+                "type": "="
+              }
+            },
+            {
+              "__class__": "LocalVariableDeclaration",
               "modifiers": "set()",
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "Field",
+                "name": "Random",
                 "dimensions": []
               },
-              "name": "fields",
-              "varargs": true
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "randomizer",
+                  "dimensions": [],
+                  "initializer": {
                     "__class__": "ClassCreator",
                     "prefix_operators": [],
                     "postfix_operators": [],
                     "selectors": [],
                     "type": {
                       "__class__": "ReferenceType",
-                      "name": "OrFields"
+                      "name": "Random"
                     },
-                    "arguments": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "fields"
-                      }
-                    ]
+                    "arguments": []
                   }
-                ],
-                "member": "serializeOrFields"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "String",
-            "dimensions": []
-          },
-          "name": "serializeOrFields",
-          "parameters": [
+                }
+              ]
+            },
             {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "OrFields",
-                "dimensions": []
-              },
-              "name": "fields",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "Field"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "getName"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "map"
+              "__class__": "ForStatement",
+              "control": {
+                "__class__": "ForControl",
+                "init": {
+                  "__class__": "VariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "BasicType",
+                    "name": "int",
+                    "dimensions": []
                   },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "i",
+                      "initializer": {
+                        "__class__": "Literal",
                         "prefix_operators": [],
                         "postfix_operators": [],
-                        "qualifier": "Collectors",
                         "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "member": "FIELD_OR_SEPARATOR"
-                          }
-                        ],
-                        "member": "joining"
+                        "value": "0"
                       }
-                    ],
-                    "member": "collect"
-                  }
-                ],
-                "arguments": [],
-                "member": "stream"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "String",
-            "dimensions": []
-          },
-          "name": "serializeOrFieldsList",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Set",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "OrFields",
-                      "dimensions": []
                     }
+                  ]
+                },
+                "condition": {
+                  "__class__": "BinaryOperation",
+                  "operator": "<",
+                  "operandl": {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "i"
+                  },
+                  "operandr": {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "1000"
+                  }
+                },
+                "update": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [
+                      "++"
+                    ],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "i"
                   }
                 ]
               },
-              "name": "fields",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [
+              "body": {
+                "__class__": "BlockStatement",
+                "statements": [
                   {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "BibEntry",
+                      "dimensions": []
+                    },
+                    "declarators": [
                       {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
+                        "__class__": "VariableDeclarator",
+                        "name": "entry",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "ClassCreator",
                           "prefix_operators": [],
                           "postfix_operators": [],
-                          "qualifier": "",
                           "selectors": [],
-                          "member": "FieldFactory"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "serializeOrFields"
-                        },
-                        "type_arguments": []
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "BibEntry"
+                          },
+                          "arguments": []
+                        }
                       }
-                    ],
-                    "member": "map"
+                    ]
                   },
                   {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "Collectors",
-                        "selectors": [],
-                        "arguments": [
-                          {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"id\""
+                          },
+                          "operandr": {
                             "__class__": "MemberReference",
                             "prefix_operators": [],
                             "postfix_operators": [],
                             "qualifier": "",
                             "selectors": [],
-                            "member": "DELIMITER"
+                            "member": "i"
                           }
-                        ],
-                        "member": "joining"
-                      }
-                    ],
-                    "member": "collect"
+                        }
+                      ],
+                      "member": "setCiteKey"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "TITLE"
+                        },
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"This is my title \""
+                          },
+                          "operandr": {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "i"
+                          }
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "AUTHOR"
+                        },
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"Firstname Lastname and FirstnameA LastnameA and FirstnameB LastnameB\""
+                          },
+                          "operandr": {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "i"
+                          }
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "JOURNAL"
+                        },
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"Journal Title \""
+                          },
+                          "operandr": {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "i"
+                          }
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "KEYWORDS"
+                        },
+                        {
+                          "__class__": "Literal",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "value": "\"testkeyword\""
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "YEAR"
+                        },
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"1\""
+                          },
+                          "operandr": {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "i"
+                          }
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "entry",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "ClassCreator",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "UnknownField"
+                          },
+                          "arguments": [
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"rnd\""
+                            }
+                          ]
+                        },
+                        {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"2\""
+                          },
+                          "operandr": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "randomizer",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "nextInt"
+                          }
+                        }
+                      ],
+                      "member": "setField"
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "database",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "entry"
+                        }
+                      ],
+                      "member": "insertEntry"
+                    }
                   }
-                ],
-                "arguments": [],
-                "member": "stream"
+                ]
               }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "List",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getNotTextFieldNames",
-          "parameters": [],
-          "body": [
+            },
             {
-              "__class__": "ReturnStatement",
+              "__class__": "StatementExpression",
               "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "Arrays",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "DOI"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "FILE"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "URL"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "URI"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "ISBN"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "ISSN"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "MONTH"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "DATE"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "YEAR"
-                  }
-                ],
-                "member": "asList"
+                "__class__": "Assignment",
+                "expressionl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "bibtexString"
+                },
+                "value": {
+                  "__class__": "MethodInvocation",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [
+                    {
+                      "__class__": "MethodInvocation",
+                      "arguments": [],
+                      "member": "toString"
+                    }
+                  ],
+                  "arguments": [],
+                  "member": "getOutputWriter"
+                },
+                "type": "="
               }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "List",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getIdentifierFieldNames",
-          "parameters": [],
-          "body": [
+            },
             {
-              "__class__": "ReturnStatement",
+              "__class__": "StatementExpression",
               "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "Arrays",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "DOI"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "EPRINT"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "StandardField",
-                    "selectors": [],
-                    "member": "PMID"
-                  }
-                ],
-                "member": "asList"
+                "__class__": "Assignment",
+                "expressionl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "latexConversionString"
+                },
+                "value": {
+                  "__class__": "Literal",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "selectors": [],
+                  "value": "\"{A} \\\\textbf{bold} approach {\\\\it to} ${{\\\\Sigma}}{\\\\Delta}$ modulator \\\\textsuperscript{2} \\\\$\""
+                },
+                "type": "="
+              }
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "Assignment",
+                "expressionl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "htmlConversionString"
+                },
+                "value": {
+                  "__class__": "Literal",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "selectors": [],
+                  "value": "\"<b>&Ouml;sterreich</b> &#8211; &amp; characters &#x2aa2; <i>italic</i>\""
+                },
+                "type": "="
               }
             }
           ]
         },
         {
           "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
+          "modifiers": "{'private'}",
           "annotations": [],
           "return_type": {
             "__class__": "ReferenceType",
-            "name": "OrFields",
+            "name": "StringWriter",
             "dimensions": []
           },
-          "name": "parseOrFields",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "String",
-                "dimensions": []
-              },
-              "name": "fieldNames",
-              "varargs": false
-            }
+          "name": "getOutputWriter",
+          "parameters": [],
+          "throws": [
+            "IOException"
           ],
           "body": [
             {
@@ -543,625 +877,81 @@
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "Set",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
+                "name": "StringWriter",
+                "dimensions": []
               },
               "declarators": [
                 {
                   "__class__": "VariableDeclarator",
-                  "name": "fields",
+                  "name": "outputWriter",
                   "dimensions": [],
                   "initializer": {
-                    "__class__": "MethodInvocation",
+                    "__class__": "ClassCreator",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "Arrays",
-                    "selectors": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "arguments": [
-                          {
-                            "__class__": "MethodReference",
-                            "expression": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "StringUtil"
-                            },
-                            "method": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "isNotBlank"
-                            },
-                            "type_arguments": []
-                          }
-                        ],
-                        "member": "filter"
-                      },
-                      {
-                        "__class__": "MethodInvocation",
-                        "arguments": [
-                          {
-                            "__class__": "MethodReference",
-                            "expression": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "FieldFactory"
-                            },
-                            "method": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "parseField"
-                            },
-                            "type_arguments": []
-                          }
-                        ],
-                        "member": "map"
-                      },
-                      {
-                        "__class__": "MethodInvocation",
-                        "arguments": [
-                          {
-                            "__class__": "MethodInvocation",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "Collectors",
-                            "selectors": [],
-                            "arguments": [
-                              {
-                                "__class__": "MethodReference",
-                                "expression": {
-                                  "__class__": "MemberReference",
-                                  "prefix_operators": [],
-                                  "postfix_operators": [],
-                                  "qualifier": "",
-                                  "selectors": [],
-                                  "member": "LinkedHashSet"
-                                },
-                                "method": {
-                                  "__class__": "MemberReference",
-                                  "member": "new"
-                                },
-                                "type_arguments": []
-                              }
-                            ],
-                            "member": "toCollection"
-                          }
-                        ],
-                        "member": "collect"
-                      }
-                    ],
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "fieldNames",
-                        "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "FieldFactory",
-                            "selectors": [],
-                            "member": "FIELD_OR_SEPARATOR"
-                          }
-                        ],
-                        "member": "split"
-                      }
-                    ],
-                    "member": "stream"
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "StringWriter"
+                    },
+                    "arguments": []
                   }
                 }
               ]
             },
             {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "ClassCreator",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "selectors": [],
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "OrFields"
-                },
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "member": "fields"
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "OrFields",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "parseOrFieldsList",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
+              "__class__": "LocalVariableDeclaration",
               "modifiers": "set()",
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "String",
+                "name": "BibtexDatabaseWriter",
                 "dimensions": []
               },
-              "name": "fieldNames",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "Arrays",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "StringUtil"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "isNotBlank"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "filter"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "FieldFactory"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "parseOrFields"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "map"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "Collectors",
-                        "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MethodReference",
-                            "expression": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "LinkedHashSet"
-                            },
-                            "method": {
-                              "__class__": "MemberReference",
-                              "member": "new"
-                            },
-                            "type_arguments": []
-                          }
-                        ],
-                        "member": "toCollection"
-                      }
-                    ],
-                    "member": "collect"
-                  }
-                ],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "databaseWriter",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "fieldNames",
                     "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "FieldFactory",
-                        "selectors": [],
-                        "member": "DELIMITER"
-                      }
-                    ],
-                    "member": "split"
-                  }
-                ],
-                "member": "stream"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "parseFieldList",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "String",
-                "dimensions": []
-              },
-              "name": "fieldNames",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "Arrays",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "StringUtil"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "isNotBlank"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "filter"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "FieldFactory"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "parseField"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "map"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "Collectors",
-                        "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MethodReference",
-                            "expression": {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "",
-                              "selectors": [],
-                              "member": "LinkedHashSet"
-                            },
-                            "method": {
-                              "__class__": "MemberReference",
-                              "member": "new"
-                            },
-                            "type_arguments": []
-                          }
-                        ],
-                        "member": "toCollection"
-                      }
-                    ],
-                    "member": "collect"
-                  }
-                ],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "fieldNames",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "FieldFactory",
-                        "selectors": [],
-                        "member": "DELIMITER"
-                      }
-                    ],
-                    "member": "split"
-                  }
-                ],
-                "member": "stream"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "String",
-            "dimensions": []
-          },
-          "name": "serializeFieldsList",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Collection",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
                     "type": {
                       "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
-              },
-              "name": "fields",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
+                      "name": "BibtexDatabaseWriter"
+                    },
                     "arguments": [
                       {
-                        "__class__": "MethodReference",
-                        "expression": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "Field"
-                        },
-                        "method": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "getName"
-                        },
-                        "type_arguments": []
-                      }
-                    ],
-                    "member": "map"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "outputWriter"
+                      },
                       {
                         "__class__": "MethodInvocation",
                         "prefix_operators": [],
                         "postfix_operators": [],
-                        "qualifier": "Collectors",
+                        "qualifier": "",
                         "selectors": [],
                         "arguments": [
                           {
-                            "__class__": "MemberReference",
+                            "__class__": "ClassReference",
                             "prefix_operators": [],
                             "postfix_operators": [],
                             "qualifier": "",
                             "selectors": [],
-                            "member": "DELIMITER"
+                            "type": {
+                              "__class__": "ReferenceType",
+                              "name": "SavePreferences"
+                            }
                           }
                         ],
-                        "member": "joining"
-                      }
-                    ],
-                    "member": "collect"
-                  }
-                ],
-                "arguments": [],
-                "member": "stream"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "type_parameters": [
-            {
-              "__class__": "TypeParameter",
-              "name": "T"
-            }
-          ],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Field",
-            "dimensions": []
-          },
-          "name": "parseField",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "T",
-                "dimensions": []
-              },
-              "name": "type",
-              "varargs": false
-            },
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "String",
-                "dimensions": []
-              },
-              "name": "fieldName",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
+                        "member": "mock"
+                      },
                       {
                         "__class__": "ClassCreator",
                         "prefix_operators": [],
@@ -1169,653 +959,9 @@
                         "selectors": [],
                         "type": {
                           "__class__": "ReferenceType",
-                          "name": "UnknownField"
+                          "name": "BibEntryTypesManager"
                         },
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "member": "fieldName"
-                          }
-                        ]
-                      }
-                    ],
-                    "member": "orElse"
-                  }
-                ],
-                "type_arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "type_arguments": [
-                      {
-                        "__class__": "TypeArgument",
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "Field",
-                          "dimensions": []
-                        }
-                      }
-                    ],
-                    "arguments": [
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type_arguments": [
-                          {
-                            "__class__": "TypeArgument",
-                            "type": {
-                              "__class__": "ReferenceType",
-                              "name": "Field",
-                              "dimensions": []
-                            }
-                          }
-                        ],
-                        "arguments": [
-                          {
-                            "__class__": "MethodInvocation",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "type_arguments": [
-                              {
-                                "__class__": "TypeArgument",
-                                "type": {
-                                  "__class__": "ReferenceType",
-                                  "name": "Field",
-                                  "dimensions": []
-                                }
-                              }
-                            ],
-                            "arguments": [
-                              {
-                                "__class__": "MethodInvocation",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "",
-                                "selectors": [],
-                                "type_arguments": [
-                                  {
-                                    "__class__": "TypeArgument",
-                                    "type": {
-                                      "__class__": "ReferenceType",
-                                      "name": "Field",
-                                      "dimensions": []
-                                    }
-                                  }
-                                ],
-                                "arguments": [
-                                  {
-                                    "__class__": "MethodInvocation",
-                                    "prefix_operators": [],
-                                    "postfix_operators": [],
-                                    "qualifier": "InternalField",
-                                    "selectors": [],
-                                    "arguments": [
-                                      {
-                                        "__class__": "MemberReference",
-                                        "prefix_operators": [],
-                                        "postfix_operators": [],
-                                        "qualifier": "",
-                                        "selectors": [],
-                                        "member": "fieldName"
-                                      }
-                                    ],
-                                    "member": "fromName"
-                                  },
-                                  {
-                                    "__class__": "MethodInvocation",
-                                    "prefix_operators": [],
-                                    "postfix_operators": [],
-                                    "qualifier": "StandardField",
-                                    "selectors": [],
-                                    "arguments": [
-                                      {
-                                        "__class__": "MemberReference",
-                                        "prefix_operators": [],
-                                        "postfix_operators": [],
-                                        "qualifier": "",
-                                        "selectors": [],
-                                        "member": "fieldName"
-                                      }
-                                    ],
-                                    "member": "fromName"
-                                  }
-                                ],
-                                "member": "OptionalUtil"
-                              },
-                              {
-                                "__class__": "MethodInvocation",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "SpecialField",
-                                "selectors": [],
-                                "arguments": [
-                                  {
-                                    "__class__": "MemberReference",
-                                    "prefix_operators": [],
-                                    "postfix_operators": [],
-                                    "qualifier": "",
-                                    "selectors": [],
-                                    "member": "fieldName"
-                                  }
-                                ],
-                                "member": "fromName"
-                              }
-                            ],
-                            "member": "OptionalUtil"
-                          },
-                          {
-                            "__class__": "MethodInvocation",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "IEEEField",
-                            "selectors": [],
-                            "arguments": [
-                              {
-                                "__class__": "MemberReference",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "",
-                                "selectors": [],
-                                "member": "fieldName"
-                              }
-                            ],
-                            "member": "fromName"
-                          }
-                        ],
-                        "member": "OptionalUtil"
-                      },
-                      {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "BiblatexSoftwareField",
-                        "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "member": "type"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "member": "fieldName"
-                          }
-                        ],
-                        "member": "fromName"
-                      }
-                    ],
-                    "member": "OptionalUtil"
-                  },
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "BiblatexApaField",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "type"
-                      },
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "fieldName"
-                      }
-                    ],
-                    "member": "fromName"
-                  }
-                ],
-                "member": "OptionalUtil"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Field",
-            "dimensions": []
-          },
-          "name": "parseField",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "String",
-                "dimensions": []
-              },
-              "name": "fieldName",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "Literal",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "selectors": [],
-                    "value": "null"
-                  },
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "member": "fieldName"
-                  }
-                ],
-                "member": "parseField"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getKeyFields",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "LambdaExpression",
-                    "parameters": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "field"
-                      }
-                    ],
-                    "body": {
-                      "__class__": "BinaryOperation",
-                      "operator": "||",
-                      "operandl": {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "field",
-                        "selectors": [
-                          {
-                            "__class__": "MethodInvocation",
-                            "arguments": [
-                              {
-                                "__class__": "MemberReference",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "FieldProperty",
-                                "selectors": [],
-                                "member": "SINGLE_ENTRY_LINK"
-                              }
-                            ],
-                            "member": "contains"
-                          }
-                        ],
-                        "arguments": [],
-                        "member": "getProperties"
-                      },
-                      "operandr": {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "field",
-                        "selectors": [
-                          {
-                            "__class__": "MethodInvocation",
-                            "arguments": [
-                              {
-                                "__class__": "MemberReference",
-                                "prefix_operators": [],
-                                "postfix_operators": [],
-                                "qualifier": "FieldProperty",
-                                "selectors": [],
-                                "member": "MULTIPLE_ENTRY_LINK"
-                              }
-                            ],
-                            "member": "contains"
-                          }
-                        ],
-                        "arguments": [],
-                        "member": "getProperties"
-                      }
-                    }
-                  }
-                ],
-                "member": "getFieldsFiltered"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "BasicType",
-            "name": "boolean",
-            "dimensions": []
-          },
-          "name": "isInternalField",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Field",
-                "dimensions": []
-              },
-              "name": "field",
-              "varargs": false
-            }
-          ],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "field",
-                "selectors": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "arguments": [
-                      {
-                        "__class__": "Literal",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "selectors": [],
-                        "value": "\"__\""
-                      }
-                    ],
-                    "member": "startsWith"
-                  }
-                ],
-                "arguments": [],
-                "member": "getName"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getJournalNameFields",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "LambdaExpression",
-                    "parameters": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "field"
-                      }
-                    ],
-                    "body": {
-                      "__class__": "MethodInvocation",
-                      "prefix_operators": [],
-                      "postfix_operators": [],
-                      "qualifier": "field",
-                      "selectors": [
-                        {
-                          "__class__": "MethodInvocation",
-                          "arguments": [
-                            {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "FieldProperty",
-                              "selectors": [],
-                              "member": "JOURNAL_NAME"
-                            }
-                          ],
-                          "member": "contains"
-                        }
-                      ],
-                      "arguments": [],
-                      "member": "getProperties"
-                    }
-                  }
-                ],
-                "member": "getFieldsFiltered"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "documentation": "/**\n     * Returns a  List with all standard fields and including some common internal fields\n     */",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getCommonFields",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "LocalVariableDeclaration",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "EnumSet",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "StandardField",
-                      "dimensions": []
-                    }
-                  }
-                ]
-              },
-              "declarators": [
-                {
-                  "__class__": "VariableDeclarator",
-                  "name": "allFields",
-                  "dimensions": [],
-                  "initializer": {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "StandardField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                }
-              ]
-            },
-            {
-              "__class__": "LocalVariableDeclaration",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "LinkedHashSet",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
-              },
-              "declarators": [
-                {
-                  "__class__": "VariableDeclarator",
-                  "name": "publicAndInternalFields",
-                  "dimensions": [],
-                  "initializer": {
-                    "__class__": "ClassCreator",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "selectors": [],
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "LinkedHashSet",
-                      "arguments": []
-                    },
-                    "arguments": [
-                      {
-                        "__class__": "BinaryOperation",
-                        "operator": "+",
-                        "operandl": {
-                          "__class__": "MethodInvocation",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "allFields",
-                          "selectors": [],
-                          "arguments": [],
-                          "member": "size"
-                        },
-                        "operandr": {
-                          "__class__": "Literal",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "selectors": [],
-                          "value": "3"
-                        }
+                        "arguments": []
                       }
                     ]
                   }
@@ -1828,82 +974,62 @@
                 "__class__": "MethodInvocation",
                 "prefix_operators": [],
                 "postfix_operators": [],
-                "qualifier": "publicAndInternalFields",
+                "qualifier": "databaseWriter",
                 "selectors": [],
                 "arguments": [
                   {
-                    "__class__": "MemberReference",
+                    "__class__": "ClassCreator",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "InternalField",
                     "selectors": [],
-                    "member": "INTERNAL_ALL_FIELD"
-                  }
-                ],
-                "member": "add"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "publicAndInternalFields",
-                "selectors": [],
-                "arguments": [
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "BibDatabaseContext"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "database"
+                      },
+                      {
+                        "__class__": "ClassCreator",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "type": {
+                          "__class__": "ReferenceType",
+                          "name": "MetaData"
+                        },
+                        "arguments": []
+                      },
+                      {
+                        "__class__": "ClassCreator",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "type": {
+                          "__class__": "ReferenceType",
+                          "name": "Defaults"
+                        },
+                        "arguments": []
+                      }
+                    ]
+                  },
                   {
-                    "__class__": "MemberReference",
+                    "__class__": "MethodInvocation",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "InternalField",
+                    "qualifier": "database",
                     "selectors": [],
-                    "member": "INTERNAL_ALL_TEXT_FIELDS_FIELD"
+                    "arguments": [],
+                    "member": "getEntries"
                   }
                 ],
-                "member": "add"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "publicAndInternalFields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "InternalField",
-                    "selectors": [],
-                    "member": "KEY_FIELD"
-                  }
-                ],
-                "member": "add"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "publicAndInternalFields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "member": "allFields"
-                  }
-                ],
-                "member": "addAll"
+                "member": "savePartOfDatabase"
               }
             },
             {
@@ -1914,33 +1040,30 @@
                 "postfix_operators": [],
                 "qualifier": "",
                 "selectors": [],
-                "member": "publicAndInternalFields"
+                "member": "outputWriter"
               }
             }
           ]
         },
         {
           "__class__": "MethodDeclaration",
-          "documentation": "/**\n     * Returns a  List with all standard fields and the citation key field\n     */",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
           "return_type": {
             "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
+            "name": "ParserResult",
+            "dimensions": []
           },
-          "name": "getStandardFieldsWithCitationKey",
+          "name": "parse",
           "parameters": [],
+          "throws": [
+            "IOException"
+          ],
           "body": [
             {
               "__class__": "LocalVariableDeclaration",
@@ -1948,71 +1071,13 @@
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "EnumSet",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "StandardField",
-                      "dimensions": []
-                    }
-                  }
-                ]
+                "name": "BibtexParser",
+                "dimensions": []
               },
               "declarators": [
                 {
                   "__class__": "VariableDeclarator",
-                  "name": "allFields",
-                  "dimensions": [],
-                  "initializer": {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "StandardField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                }
-              ]
-            },
-            {
-              "__class__": "LocalVariableDeclaration",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "LinkedHashSet",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
-              },
-              "declarators": [
-                {
-                  "__class__": "VariableDeclarator",
-                  "name": "standardFieldsWithBibtexKey",
+                  "name": "parser",
                   "dimensions": [],
                   "initializer": {
                     "__class__": "ClassCreator",
@@ -2021,29 +1086,28 @@
                     "selectors": [],
                     "type": {
                       "__class__": "ReferenceType",
-                      "name": "LinkedHashSet",
-                      "arguments": []
+                      "name": "BibtexParser"
                     },
                     "arguments": [
                       {
-                        "__class__": "BinaryOperation",
-                        "operator": "+",
-                        "operandl": {
-                          "__class__": "MethodInvocation",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "allFields",
-                          "selectors": [],
-                          "arguments": [],
-                          "member": "size"
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Globals.prefs",
+                        "selectors": [],
+                        "arguments": [],
+                        "member": "getImportFormatPreferences"
+                      },
+                      {
+                        "__class__": "ClassCreator",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "type": {
+                          "__class__": "ReferenceType",
+                          "name": "DummyFileUpdateMonitor"
                         },
-                        "operandr": {
-                          "__class__": "Literal",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "selectors": [],
-                          "value": "1"
-                        }
+                        "arguments": []
                       }
                     ]
                   }
@@ -2051,251 +1115,58 @@
               ]
             },
             {
-              "__class__": "StatementExpression",
+              "__class__": "ReturnStatement",
               "expression": {
                 "__class__": "MethodInvocation",
                 "prefix_operators": [],
                 "postfix_operators": [],
-                "qualifier": "standardFieldsWithBibtexKey",
+                "qualifier": "parser",
                 "selectors": [],
                 "arguments": [
                   {
-                    "__class__": "MemberReference",
+                    "__class__": "ClassCreator",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "InternalField",
                     "selectors": [],
-                    "member": "KEY_FIELD"
-                  }
-                ],
-                "member": "add"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "standardFieldsWithBibtexKey",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MemberReference",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "",
-                    "selectors": [],
-                    "member": "allFields"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MemberReference",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "member": "standardFieldsWithBibtexKey"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getBookNameFields",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "LambdaExpression",
-                    "parameters": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "field"
-                      }
-                    ],
-                    "body": {
-                      "__class__": "MethodInvocation",
-                      "prefix_operators": [],
-                      "postfix_operators": [],
-                      "qualifier": "field",
-                      "selectors": [
-                        {
-                          "__class__": "MethodInvocation",
-                          "arguments": [
-                            {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "FieldProperty",
-                              "selectors": [],
-                              "member": "BOOK_NAME"
-                            }
-                          ],
-                          "member": "contains"
-                        }
-                      ],
-                      "arguments": [],
-                      "member": "getProperties"
-                    }
-                  }
-                ],
-                "member": "getFieldsFiltered"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getPersonNameFields",
-          "parameters": [],
-          "body": [
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "LambdaExpression",
-                    "parameters": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "field"
-                      }
-                    ],
-                    "body": {
-                      "__class__": "MethodInvocation",
-                      "prefix_operators": [],
-                      "postfix_operators": [],
-                      "qualifier": "field",
-                      "selectors": [
-                        {
-                          "__class__": "MethodInvocation",
-                          "arguments": [
-                            {
-                              "__class__": "MemberReference",
-                              "prefix_operators": [],
-                              "postfix_operators": [],
-                              "qualifier": "FieldProperty",
-                              "selectors": [],
-                              "member": "PERSON_NAMES"
-                            }
-                          ],
-                          "member": "contains"
-                        }
-                      ],
-                      "arguments": [],
-                      "member": "getProperties"
-                    }
-                  }
-                ],
-                "member": "getFieldsFiltered"
-              }
-            }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "modifiers": "{'static', 'private'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getFieldsFiltered",
-          "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Predicate",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
                     "type": {
                       "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
+                      "name": "StringReader"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "bibtexString"
+                      }
+                    ]
                   }
-                ]
-              },
-              "name": "selector",
-              "varargs": false
+                ],
+                "member": "parse"
+              }
             }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "write",
+          "parameters": [],
+          "throws": [
+            "Exception"
           ],
           "body": [
             {
@@ -2309,18 +1180,127 @@
                   {
                     "__class__": "MethodInvocation",
                     "arguments": [],
+                    "member": "toString"
+                  }
+                ],
+                "arguments": [],
+                "member": "getOutputWriter"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "List",
+            "dimensions": [],
+            "arguments": [
+              {
+                "__class__": "TypeArgument",
+                "type": {
+                  "__class__": "ReferenceType",
+                  "name": "BibEntry",
+                  "dimensions": []
+                }
+              }
+            ]
+          },
+          "name": "search",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "SearchQuery",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "searchQuery",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "SearchQuery"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "\"Journal Title 500\""
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "database",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
                     "member": "stream"
                   },
                   {
                     "__class__": "MethodInvocation",
                     "arguments": [
                       {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "member": "selector"
+                        "__class__": "MethodReference",
+                        "expression": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "searchQuery"
+                        },
+                        "method": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "isMatch"
+                        },
+                        "type_arguments": []
                       }
                     ],
                     "member": "filter"
@@ -2335,301 +1315,27 @@
                         "qualifier": "Collectors",
                         "selectors": [],
                         "arguments": [],
-                        "member": "toSet"
+                        "member": "toList"
                       }
                     ],
                     "member": "collect"
                   }
                 ],
                 "arguments": [],
-                "member": "getAllFields"
+                "member": "getEntries"
               }
             }
           ]
         },
         {
           "__class__": "MethodDeclaration",
-          "modifiers": "{'static', 'private'}",
-          "annotations": [],
-          "return_type": {
-            "__class__": "ReferenceType",
-            "name": "Set",
-            "dimensions": [],
-            "arguments": [
-              {
-                "__class__": "TypeArgument",
-                "type": {
-                  "__class__": "ReferenceType",
-                  "name": "Field",
-                  "dimensions": []
-                }
-              }
-            ]
-          },
-          "name": "getAllFields",
-          "parameters": [],
-          "body": [
+          "modifiers": "{'public'}",
+          "annotations": [
             {
-              "__class__": "LocalVariableDeclaration",
-              "modifiers": "set()",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Set",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
-              },
-              "declarators": [
-                {
-                  "__class__": "VariableDeclarator",
-                  "name": "fields",
-                  "dimensions": [],
-                  "initializer": {
-                    "__class__": "ClassCreator",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "selectors": [],
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "HashSet",
-                      "arguments": []
-                    },
-                    "arguments": []
-                  }
-                }
-              ]
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "BiblatexApaField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "BiblatexSoftwareField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "IEEEField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "InternalField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "SpecialField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "StatementExpression",
-              "expression": {
-                "__class__": "MethodInvocation",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "fields",
-                "selectors": [],
-                "arguments": [
-                  {
-                    "__class__": "MethodInvocation",
-                    "prefix_operators": [],
-                    "postfix_operators": [],
-                    "qualifier": "EnumSet",
-                    "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "StandardField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
-                  }
-                ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MemberReference",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "member": "fields"
-              }
+              "__class__": "Annotation",
+              "name": "Benchmark"
             }
-          ]
-        },
-        {
-          "__class__": "MethodDeclaration",
-          "documentation": "/**\n     * These are the fields JabRef always displays as default {@link org.jabref.preferences.JabRefPreferences#setLanguageDependentDefaultValues()}\n     *\n     * A user can change them. The change is currently stored in the preferences only and not explicitly exposed as\n     * separate preferences object\n     */",
-          "modifiers": "{'public', 'static'}",
-          "annotations": [],
+          ],
           "return_type": {
             "__class__": "ReferenceType",
             "name": "List",
@@ -2639,13 +1345,13 @@
                 "__class__": "TypeArgument",
                 "type": {
                   "__class__": "ReferenceType",
-                  "name": "Field",
+                  "name": "BibEntry",
                   "dimensions": []
                 }
               }
             ]
           },
-          "name": "getDefaultGeneralFields",
+          "name": "parallelSearch",
           "parameters": [],
           "body": [
             {
@@ -2654,23 +1360,13 @@
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "List",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
-                ]
+                "name": "SearchQuery",
+                "dimensions": []
               },
               "declarators": [
                 {
                   "__class__": "VariableDeclarator",
-                  "name": "defaultGeneralFields",
+                  "name": "searchQuery",
                   "dimensions": [],
                   "initializer": {
                     "__class__": "ClassCreator",
@@ -2679,67 +1375,29 @@
                     "selectors": [],
                     "type": {
                       "__class__": "ReferenceType",
-                      "name": "ArrayList",
-                      "arguments": []
+                      "name": "SearchQuery"
                     },
                     "arguments": [
                       {
-                        "__class__": "MethodInvocation",
+                        "__class__": "Literal",
                         "prefix_operators": [],
                         "postfix_operators": [],
-                        "qualifier": "Arrays",
                         "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "CROSSREF"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "KEYWORDS"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "FILE"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "GROUPS"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "OWNER"
-                          },
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "StandardField",
-                            "selectors": [],
-                            "member": "TIMESTAMP"
-                          }
-                        ],
-                        "member": "asList"
+                        "value": "\"Journal Title 500\""
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
                       }
                     ]
                   }
@@ -2747,48 +1405,427 @@
               ]
             },
             {
-              "__class__": "StatementExpression",
+              "__class__": "ReturnStatement",
               "expression": {
                 "__class__": "MethodInvocation",
                 "prefix_operators": [],
                 "postfix_operators": [],
-                "qualifier": "defaultGeneralFields",
+                "qualifier": "database",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
+                    "member": "parallelStream"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "MethodReference",
+                        "expression": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "searchQuery"
+                        },
+                        "method": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "isMatch"
+                        },
+                        "type_arguments": []
+                      }
+                    ],
+                    "member": "filter"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Collectors",
+                        "selectors": [],
+                        "arguments": [],
+                        "member": "toList"
+                      }
+                    ],
+                    "member": "collect"
+                  }
+                ],
+                "arguments": [],
+                "member": "getEntries"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "BibDatabaseMode",
+            "dimensions": []
+          },
+          "name": "inferBibDatabaseMode",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "BibDatabaseModeDetection",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "database"
+                  }
+                ],
+                "member": "inferMode"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "latexToUnicodeConversion",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "LatexToUnicodeFormatter",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "f",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "LatexToUnicodeFormatter"
+                    },
+                    "arguments": []
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "f",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "latexConversionString"
+                  }
+                ],
+                "member": "format"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "latexToHTMLConversion",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "HTMLChars",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "f",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "HTMLChars"
+                    },
+                    "arguments": []
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "f",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "latexConversionString"
+                  }
+                ],
+                "member": "format"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "htmlToLatexConversion",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "HtmlToLatexFormatter",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "f",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "HtmlToLatexFormatter"
+                    },
+                    "arguments": []
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "f",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "htmlConversionString"
+                  }
+                ],
+                "member": "format"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Benchmark"
+            }
+          ],
+          "return_type": {
+            "__class__": "BasicType",
+            "name": "boolean",
+            "dimensions": []
+          },
+          "name": "keywordGroupContains",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "KeywordGroup",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "group",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "WordKeywordGroup"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "\"testGroup\""
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "GroupHierarchyType",
+                        "selectors": [],
+                        "member": "INDEPENDENT"
+                      },
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "KEYWORDS"
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "\"testkeyword\""
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "','"
+                      },
+                      {
+                        "__class__": "Literal",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "value": "false"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "group",
                 "selectors": [],
                 "arguments": [
                   {
                     "__class__": "MethodInvocation",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "EnumSet",
+                    "qualifier": "database",
                     "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "ClassReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "",
-                        "selectors": [],
-                        "type": {
-                          "__class__": "ReferenceType",
-                          "name": "SpecialField"
-                        }
-                      }
-                    ],
-                    "member": "allOf"
+                    "arguments": [],
+                    "member": "getEntries"
                   }
                 ],
-                "member": "addAll"
-              }
-            },
-            {
-              "__class__": "ReturnStatement",
-              "expression": {
-                "__class__": "MemberReference",
-                "prefix_operators": [],
-                "postfix_operators": [],
-                "qualifier": "",
-                "selectors": [],
-                "member": "defaultGeneralFields"
+                "member": "containsAll"
               }
             }
           ]
@@ -2797,158 +1834,47 @@
           "__class__": "MethodDeclaration",
           "modifiers": "{'public', 'static'}",
           "annotations": [],
-          "return_type": {
-            "__class__": "BasicType",
-            "name": "boolean",
-            "dimensions": []
-          },
-          "name": "isMultiLineField",
+          "name": "main",
           "parameters": [
-            {
-              "__class__": "FormalParameter",
-              "modifiers": "{'final'}",
-              "annotations": [],
-              "type": {
-                "__class__": "ReferenceType",
-                "name": "Field",
-                "dimensions": []
-              },
-              "name": "field",
-              "varargs": false
-            },
             {
               "__class__": "FormalParameter",
               "modifiers": "set()",
               "annotations": [],
               "type": {
                 "__class__": "ReferenceType",
-                "name": "List",
-                "dimensions": [],
-                "arguments": [
-                  {
-                    "__class__": "TypeArgument",
-                    "type": {
-                      "__class__": "ReferenceType",
-                      "name": "Field",
-                      "dimensions": []
-                    }
-                  }
+                "name": "String",
+                "dimensions": [
+                  null
                 ]
               },
-              "name": "nonWrappableFields",
+              "name": "args",
               "varargs": false
             }
           ],
+          "throws": [
+            "IOException",
+            "RunnerException"
+          ],
           "body": [
             {
-              "__class__": "ReturnStatement",
+              "__class__": "StatementExpression",
               "expression": {
-                "__class__": "BinaryOperation",
-                "operator": "||",
-                "operandl": {
-                  "__class__": "BinaryOperation",
-                  "operator": "||",
-                  "operandl": {
-                    "__class__": "BinaryOperation",
-                    "operator": "||",
-                    "operandl": {
-                      "__class__": "BinaryOperation",
-                      "operator": "||",
-                      "operandl": {
-                        "__class__": "BinaryOperation",
-                        "operator": "instanceof",
-                        "operandl": {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "",
-                          "selectors": [],
-                          "member": "field"
-                        },
-                        "operandr": {
-                          "__class__": "ReferenceType",
-                          "name": "UnknownField",
-                          "dimensions": []
-                        },
-                        "prefix_operators": [],
-                        "selectors": [],
-                        "postfix_operators": []
-                      },
-                      "operandr": {
-                        "__class__": "MethodInvocation",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "nonWrappableFields",
-                        "selectors": [],
-                        "arguments": [
-                          {
-                            "__class__": "MemberReference",
-                            "prefix_operators": [],
-                            "postfix_operators": [],
-                            "qualifier": "",
-                            "selectors": [],
-                            "member": "field"
-                          }
-                        ],
-                        "member": "contains"
-                      }
-                    },
-                    "operandr": {
-                      "__class__": "MethodInvocation",
-                      "prefix_operators": [],
-                      "postfix_operators": [],
-                      "qualifier": "field",
-                      "selectors": [],
-                      "arguments": [
-                        {
-                          "__class__": "MemberReference",
-                          "prefix_operators": [],
-                          "postfix_operators": [],
-                          "qualifier": "StandardField",
-                          "selectors": [],
-                          "member": "ABSTRACT"
-                        }
-                      ],
-                      "member": "equals"
-                    }
-                  },
-                  "operandr": {
-                    "__class__": "MethodInvocation",
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "Main",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
                     "prefix_operators": [],
                     "postfix_operators": [],
-                    "qualifier": "field",
+                    "qualifier": "",
                     "selectors": [],
-                    "arguments": [
-                      {
-                        "__class__": "MemberReference",
-                        "prefix_operators": [],
-                        "postfix_operators": [],
-                        "qualifier": "StandardField",
-                        "selectors": [],
-                        "member": "COMMENT"
-                      }
-                    ],
-                    "member": "equals"
+                    "member": "args"
                   }
-                },
-                "operandr": {
-                  "__class__": "MethodInvocation",
-                  "prefix_operators": [],
-                  "postfix_operators": [],
-                  "qualifier": "field",
-                  "selectors": [],
-                  "arguments": [
-                    {
-                      "__class__": "MemberReference",
-                      "prefix_operators": [],
-                      "postfix_operators": [],
-                      "qualifier": "StandardField",
-                      "selectors": [],
-                      "member": "REVIEW"
-                    }
-                  ],
-                  "member": "equals"
-                }
+                ],
+                "member": "main"
               }
             }
           ]

@@ -1,0 +1,62 @@
+[
+    {
+        "function_name": "addAll",
+        "api_name": "Collection"
+    },
+    {
+        "function_name": "stream",
+        "api_name": "Collection"
+    },
+    {
+        "function_name": "toSet",
+        "api_name": "Collectors"
+    },
+    {
+        "function_name": "toCollection",
+        "api_name": "Collectors"
+    },
+    {
+        "function_name": "joining",
+        "api_name": "Collectors"
+    },
+    {
+        "function_name": "asList",
+        "api_name": "Arrays"
+    },
+    {
+        "function_name": "split",
+        "api_name": "String"
+    },
+    {
+        "function_name": "fromName",
+        "api_name": "Enum"
+    },
+    {
+        "function_name": "getName",
+        "api_name": "Class"
+    },
+    {
+        "function_name": "equals",
+        "api_name": "Object"
+    },
+    {
+        "function_name": "getProperties",
+        "api_name": "System"
+    },
+    {
+        "function_name": "allOf",
+        "api_name": "EnumSet"
+    },
+    {
+        "function_name": "size",
+        "api_name": "Collection"
+    },
+    {
+        "function_name": "add",
+        "api_name": "Collection"
+    },
+    {
+        "function_name": "contains",
+        "api_name": "Collection"
+    }
+]

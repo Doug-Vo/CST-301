@@ -80,7 +80,7 @@ with open('ast.json', 'r') as file:
 unique_class = extract_unique_class(ast)
 
 # Initialize the file for writing
-with open('output.txt', 'w') as output_file:
+with open('output3.txt', 'w') as output_file:
     client = Client()
     messages = [
         {"role": "system",
@@ -195,13 +195,13 @@ with open('output.txt', 'w') as output_file:
     def ask_gpt_function(functions):
         # Construct the prompt with the object description and option descriptions
         prompt = "Using the classes from the previous question "
-        prompt += "I want you to list these functions: "
+        prompt += "I want you to list these Java functions: "
         for func_info in functions:
             prompt += func_info + ", "
 
         prompt += "in the form of:\n"
-        prompt += "Functions— function name, class it belongs to and the summary with 1 sentence."
-        prompt += "For example: createStatement() - Connection - <summary of createStatement()>"
+        prompt += "Functions— function name - the api its belongs to - the summary with 1 sentence."
+        prompt += "For example: createStatement() - java.util.Connection - <summary of createStatement()>"
         prompt += "Make sure to only fit one class for one function, if there are many classes, only pick one"
         messages.append({"role": "user", "content": prompt})
         response = client.chat.completions.create(
@@ -221,4 +221,4 @@ with open('output.txt', 'w') as output_file:
     output_file.write("\nFunction Summaries:\n")
     output_file.write(answer + "\n")
 
-print("Output written to output.txt")
+print("Output written to output3.txt")

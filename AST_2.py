@@ -131,5 +131,5 @@ for item in classification_list:
 # Call the function to read the Java documentation content
 java_doc_content = read_java_documentation(Java_link)
 
-file = open("output.txt", "w")
+file = open("output2.txt", "w")
 file.write(str(java_doc_content))

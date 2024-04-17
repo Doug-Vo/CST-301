@@ -1,170 +1,141 @@
-package org.jabref.model.entry.field;
+package org.jabref.benchmarks;
 
-import org.jabref.model.strings.StringUtil;
-import org.jabref.model.util.OptionalUtil;
-
-import java.util.*;
-import java.util.function.Predicate;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-public class FieldFactory {
+import org.jabref.Globals;
+import org.jabref.logic.exporter.BibtexDatabaseWriter;
+import org.jabref.logic.exporter.SavePreferences;
+import org.jabref.logic.formatter.bibtexfields.HtmlToLatexFormatter;
+import org.jabref.logic.importer.ParserResult;
+import org.jabref.logic.importer.fileformat.BibtexParser;
+import org.jabref.logic.layout.format.HTMLChars;
+import org.jabref.logic.layout.format.LatexToUnicodeFormatter;
+import org.jabref.logic.search.SearchQuery;
+import org.jabref.model.Defaults;
+import org.jabref.model.database.BibDatabase;
+import org.jabref.model.database.BibDatabaseContext;
+import org.jabref.model.database.BibDatabaseMode;
+import org.jabref.model.database.BibDatabaseModeDetection;
+import org.jabref.model.entry.BibEntry;
+import org.jabref.model.entry.BibEntryTypesManager;
+import org.jabref.model.entry.field.StandardField;
+import org.jabref.model.entry.field.UnknownField;
+import org.jabref.model.groups.GroupHierarchyType;
+import org.jabref.model.groups.KeywordGroup;
+import org.jabref.model.groups.WordKeywordGroup;
+import org.jabref.model.metadata.MetaData;
+import org.jabref.model.util.DummyFileUpdateMonitor;
+import org.jabref.preferences.JabRefPreferences;
 
-    /**
-     * Character separating field names that are to be used in sequence as fallbacks for a single column
-     * (e.g. "author/editor" to use editor where author is not set):
-     */
-    private static final String FIELD_OR_SEPARATOR = "/";
-    private static final String DELIMITER = ";";
+import org.openjdk.jmh.Main;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.runner.RunnerException;
 
-    public static String serializeOrFields(Field... fields) {
-        return serializeOrFields(new OrFields(fields));
+import static org.mockito.Mockito.mock;
+
+@State(Scope.Thread)
+public class Benchmarks {
+
+    private String bibtexString;
+    private final BibDatabase database = new BibDatabase();
+    private String latexConversionString;
+    private String htmlConversionString;
+
+    @Setup
+    public void init() throws Exception {
+        Globals.prefs = JabRefPreferences.getInstance();
+
+        Random randomizer = new Random();
+        for (int i = 0; i < 1000; i++) {
+            BibEntry entry = new BibEntry();
+            entry.setCiteKey("id" + i);
+            entry.setField(StandardField.TITLE, "This is my title " + i);
+            entry.setField(StandardField.AUTHOR, "Firstname Lastname and FirstnameA LastnameA and FirstnameB LastnameB" + i);
+            entry.setField(StandardField.JOURNAL, "Journal Title " + i);
+            entry.setField(StandardField.KEYWORDS, "testkeyword");
+            entry.setField(StandardField.YEAR, "1" + i);
+            entry.setField(new UnknownField("rnd"), "2" + randomizer.nextInt());
+            database.insertEntry(entry);
+        }
+
+        bibtexString = getOutputWriter().toString();
+
+        latexConversionString = "{A} \\textbf{bold} approach {\\it to} ${{\\Sigma}}{\\Delta}$ modulator \\textsuperscript{2} \\$";
+
+        htmlConversionString = "<b>&Ouml;sterreich</b> &#8211; &amp; characters &#x2aa2; <i>italic</i>";
     }
 
-    public static String serializeOrFields(OrFields fields) {
-        return fields.stream()
-                     .map(Field::getName)
-                     .collect(Collectors.joining(FIELD_OR_SEPARATOR));
+    private StringWriter getOutputWriter() throws IOException {
+        StringWriter outputWriter = new StringWriter();
+        BibtexDatabaseWriter databaseWriter = new BibtexDatabaseWriter(outputWriter, mock(SavePreferences.class), new BibEntryTypesManager());
+        databaseWriter.savePartOfDatabase(
+                new BibDatabaseContext(database, new MetaData(), new Defaults()), database.getEntries());
+        return outputWriter;
     }
 
-    public static String serializeOrFieldsList(Set<OrFields> fields) {
-        return fields.stream().map(FieldFactory::serializeOrFields).collect(Collectors.joining(DELIMITER));
+    @Benchmark
+    public ParserResult parse() throws IOException {
+        BibtexParser parser = new BibtexParser(Globals.prefs.getImportFormatPreferences(), new DummyFileUpdateMonitor());
+        return parser.parse(new StringReader(bibtexString));
     }
 
-    public static List<Field> getNotTextFieldNames() {
-        return Arrays.asList(StandardField.DOI, StandardField.FILE, StandardField.URL, StandardField.URI, StandardField.ISBN, StandardField.ISSN, StandardField.MONTH, StandardField.DATE, StandardField.YEAR);
+    @Benchmark
+    public String write() throws Exception {
+        return getOutputWriter().toString();
     }
 
-    public static List<Field> getIdentifierFieldNames() {
-        return Arrays.asList(StandardField.DOI, StandardField.EPRINT, StandardField.PMID);
+    @Benchmark
+    public List<BibEntry> search() {
+        // FIXME: Reuse SearchWorker here
+        SearchQuery searchQuery = new SearchQuery("Journal Title 500", false, false);
+        return database.getEntries().stream().filter(searchQuery::isMatch).collect(Collectors.toList());
     }
 
-    public static OrFields parseOrFields(String fieldNames) {
-        Set<Field> fields = Arrays.stream(fieldNames.split(FieldFactory.FIELD_OR_SEPARATOR))
-                     .filter(StringUtil::isNotBlank)
-                     .map(FieldFactory::parseField)
-                     .collect(Collectors.toCollection(LinkedHashSet::new));
-        return new OrFields(fields);
+    @Benchmark
+    public List<BibEntry> parallelSearch() {
+        // FIXME: Reuse SearchWorker here
+        SearchQuery searchQuery = new SearchQuery("Journal Title 500", false, false);
+        return database.getEntries().parallelStream().filter(searchQuery::isMatch).collect(Collectors.toList());
     }
 
-    public static Set<OrFields> parseOrFieldsList(String fieldNames) {
-        return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
-                     .filter(StringUtil::isNotBlank)
-                     .map(FieldFactory::parseOrFields)
-                     .collect(Collectors.toCollection(LinkedHashSet::new));
+    @Benchmark
+    public BibDatabaseMode inferBibDatabaseMode() {
+        return BibDatabaseModeDetection.inferMode(database);
     }
 
-    public static Set<Field> parseFieldList(String fieldNames) {
-        return Arrays.stream(fieldNames.split(FieldFactory.DELIMITER))
-                     .filter(StringUtil::isNotBlank)
-                     .map(FieldFactory::parseField)
-                     .collect(Collectors.toCollection(LinkedHashSet::new));
+    @Benchmark
+    public String latexToUnicodeConversion() {
+        LatexToUnicodeFormatter f = new LatexToUnicodeFormatter();
+        return f.format(latexConversionString);
     }
 
-    public static String serializeFieldsList(Collection<Field> fields) {
-        return fields.stream()
-                     .map(Field::getName)
-                     .collect(Collectors.joining(DELIMITER));
+    @Benchmark
+    public String latexToHTMLConversion() {
+        HTMLChars f = new HTMLChars();
+        return f.format(latexConversionString);
     }
 
-    public static <T> Field parseField(T type, String fieldName) {
-        return OptionalUtil.<Field>orElse(
-              OptionalUtil.<Field>orElse(
-               OptionalUtil.<Field>orElse(
-                OptionalUtil.<Field>orElse(
-                 OptionalUtil.<Field>orElse(
-              InternalField.fromName(fieldName),
-              StandardField.fromName(fieldName)),
-              SpecialField.fromName(fieldName)),
-              IEEEField.fromName(fieldName)),
-              BiblatexSoftwareField.fromName(type, fieldName)),
-              BiblatexApaField.fromName(type, fieldName))
-              .orElse(new UnknownField(fieldName));
+    @Benchmark
+    public String htmlToLatexConversion() {
+        HtmlToLatexFormatter f = new HtmlToLatexFormatter();
+        return f.format(htmlConversionString);
     }
 
-    public static Field parseField(String fieldName) {
-        return parseField(null, fieldName);
+    @Benchmark
+    public boolean keywordGroupContains() {
+        KeywordGroup group = new WordKeywordGroup("testGroup", GroupHierarchyType.INDEPENDENT, StandardField.KEYWORDS, "testkeyword", false, ',', false);
+        return group.containsAll(database.getEntries());
     }
 
-    public static Set<Field> getKeyFields() {
-        return getFieldsFiltered(field -> field.getProperties().contains(FieldProperty.SINGLE_ENTRY_LINK) || field.getProperties().contains(FieldProperty.MULTIPLE_ENTRY_LINK));
-    }
-
-    public static boolean isInternalField(Field field) {
-        return field.getName().startsWith("__");
-    }
-
-    public static Set<Field> getJournalNameFields() {
-        return getFieldsFiltered(field -> field.getProperties().contains(FieldProperty.JOURNAL_NAME));
-    }
-
-    /**
-     * Returns a  List with all standard fields and including some common internal fields
-     */
-    public static Set<Field> getCommonFields() {
-        EnumSet<StandardField> allFields = EnumSet.allOf(StandardField.class);
-
-        LinkedHashSet<Field> publicAndInternalFields = new LinkedHashSet<>(allFields.size() + 3);
-        publicAndInternalFields.add(InternalField.INTERNAL_ALL_FIELD);
-        publicAndInternalFields.add(InternalField.INTERNAL_ALL_TEXT_FIELDS_FIELD);
-        publicAndInternalFields.add(InternalField.KEY_FIELD);
-        publicAndInternalFields.addAll(allFields);
-
-        return publicAndInternalFields;
-    }
-
-    /**
-     * Returns a  List with all standard fields and the citation key field
-     */
-    public static Set<Field> getStandardFieldsWithCitationKey() {
-        EnumSet<StandardField> allFields = EnumSet.allOf(StandardField.class);
-
-        LinkedHashSet<Field> standardFieldsWithBibtexKey = new LinkedHashSet<>(allFields.size() + 1);
-        standardFieldsWithBibtexKey.add(InternalField.KEY_FIELD);
-        standardFieldsWithBibtexKey.addAll(allFields);
-
-        return standardFieldsWithBibtexKey;
-    }
-
-    public static Set<Field> getBookNameFields() {
-        return getFieldsFiltered(field -> field.getProperties().contains(FieldProperty.BOOK_NAME));
-    }
-
-    public static Set<Field> getPersonNameFields() {
-        return getFieldsFiltered(field -> field.getProperties().contains(FieldProperty.PERSON_NAMES));
-    }
-
-    private static Set<Field> getFieldsFiltered(Predicate<Field> selector) {
-        return getAllFields().stream()
-                             .filter(selector)
-                             .collect(Collectors.toSet());
-    }
-
-    private static Set<Field> getAllFields() {
-        Set<Field> fields = new HashSet<>();
-        fields.addAll(EnumSet.allOf(BiblatexApaField.class));
-        fields.addAll(EnumSet.allOf(BiblatexSoftwareField.class));
-        fields.addAll(EnumSet.allOf(IEEEField.class));
-        fields.addAll(EnumSet.allOf(InternalField.class));
-        fields.addAll(EnumSet.allOf(SpecialField.class));
-        fields.addAll(EnumSet.allOf(StandardField.class));
-        return fields;
-    }
-
-    /**
-     * These are the fields JabRef always displays as default {@link org.jabref.preferences.JabRefPreferences#setLanguageDependentDefaultValues()}
-     *
-     * A user can change them. The change is currently stored in the preferences only and not explicitly exposed as
-     * separate preferences object
-     */
-    public static List<Field> getDefaultGeneralFields() {
-        List<Field> defaultGeneralFields = new ArrayList<>(Arrays.asList(StandardField.CROSSREF, StandardField.KEYWORDS, StandardField.FILE, StandardField.GROUPS, StandardField.OWNER, StandardField.TIMESTAMP));
-        defaultGeneralFields.addAll(EnumSet.allOf(SpecialField.class));
-        return defaultGeneralFields;
-    }
-
-    // TODO: This should ideally be user configurable! Move somewhere more appropriate in the future
-    public static boolean isMultiLineField(final Field field, List<Field> nonWrappableFields) {
-        // Treat unknown fields as multi-line fields
-        return (field instanceof UnknownField) || nonWrappableFields.contains(field) || field.equals(StandardField.ABSTRACT) || field.equals(StandardField.COMMENT) || field.equals(StandardField.REVIEW);
+    public static void main(String[] args) throws IOException, RunnerException {
+        Main.main(args);
     }
 }
