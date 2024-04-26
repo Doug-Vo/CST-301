@@ -14,7 +14,7 @@ CREATE TABLE functions_api(
 CREATE TABLE api_function_specific(
     function_name_fk TEXT, 
     api_name_fk TEXT, 
-    api_conext TEXT, 
+    api_context TEXT, 
     api_topic TEXT, 
     function_context TEXT, 
     function_topic TEXT, 

@@ -2,126 +2,90 @@
   "__class__": "CompilationUnit",
   "package": {
     "__class__": "PackageDeclaration",
-    "name": "org.jabref.benchmarks"
+    "name": "org.jabref.logic.importer.fetcher"
   },
   "imports": [
     {
       "__class__": "Import",
-      "path": "java.io.IOException",
+      "path": "kong.unirest.json.JSONArray",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.io.StringReader",
+      "path": "kong.unirest.json.JSONException",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.io.StringWriter",
+      "path": "kong.unirest.json.JSONObject",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.util.List",
+      "path": "org.apache.http.client.utils.URIBuilder",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.util.Random",
+      "path": "org.apache.lucene.queryparser.flexible.core.nodes.QueryNode",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "java.util.stream.Collectors",
+      "path": "org.jabref.logic.cleanup.FieldFormatterCleanup",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.Globals",
+      "path": "org.jabref.logic.formatter.bibtexfields.ClearFormatter",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.exporter.BibtexDatabaseWriter",
+      "path": "org.jabref.logic.formatter.bibtexfields.RemoveBracesFormatter",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.exporter.SavePreferences",
+      "path": "org.jabref.logic.importer",
+      "static": false,
+      "wildcard": true
+    },
+    {
+      "__class__": "Import",
+      "path": "org.jabref.logic.importer.fetcher.transformers.DefaultQueryTransformer",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.formatter.bibtexfields.HtmlToLatexFormatter",
+      "path": "org.jabref.logic.importer.util.JsonReader",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.importer.ParserResult",
+      "path": "org.jabref.logic.util.strings.StringSimilarity",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.importer.fileformat.BibtexParser",
+      "path": "org.jabref.model.entry.Author",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.logic.layout.format.HTMLChars",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.logic.layout.format.LatexToUnicodeFormatter",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.logic.search.SearchQuery",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.model.Defaults",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.model.database.BibDatabase",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.model.database.BibDatabaseContext",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.model.database.BibDatabaseMode",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.jabref.model.database.BibDatabaseModeDetection",
+      "path": "org.jabref.model.entry.AuthorList",
       "static": false,
       "wildcard": false
     },
@@ -133,102 +97,3149 @@
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.entry.BibEntryTypesManager",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
       "path": "org.jabref.model.entry.field.StandardField",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.entry.field.UnknownField",
+      "path": "org.jabref.model.entry.identifier.DOI",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.groups.GroupHierarchyType",
+      "path": "org.jabref.model.entry.types.EntryType",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.groups.KeywordGroup",
+      "path": "org.jabref.model.entry.types.StandardEntryType",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.groups.WordKeywordGroup",
+      "path": "org.jabref.model.util.OptionalUtil",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.metadata.MetaData",
+      "path": "java.net.MalformedURLException",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.model.util.DummyFileUpdateMonitor",
+      "path": "java.net.URISyntaxException",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.jabref.preferences.JabRefPreferences",
+      "path": "java.net.URL",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.openjdk.jmh.Main",
+      "path": "java.util.ArrayList",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.openjdk.jmh.annotations.Benchmark",
+      "path": "java.util.Collections",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.openjdk.jmh.annotations.Scope",
+      "path": "java.util.List",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.openjdk.jmh.annotations.Setup",
+      "path": "java.util.Optional",
       "static": false,
       "wildcard": false
     },
     {
       "__class__": "Import",
-      "path": "org.openjdk.jmh.annotations.State",
+      "path": "java.util.stream.IntStream",
       "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.openjdk.jmh.runner.RunnerException",
-      "static": false,
-      "wildcard": false
-    },
-    {
-      "__class__": "Import",
-      "path": "org.mockito.Mockito.mock",
-      "static": true,
       "wildcard": false
     }
   ],
   "types": [
+    {
+      "__class__": "ClassDeclaration",
+      "modifiers": "{'public'}",
+      "annotations": [],
+      "documentation": "/**\n * A class for fetching DOIs from CrossRef\n * <p>\n * See https://github.com/CrossRef/rest-api-doc\n */",
+      "name": "CrossRef",
+      "body": [
+        {
+          "__class__": "FieldDeclaration",
+          "modifiers": "{'private', 'final', 'static'}",
+          "annotations": [],
+          "type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "declarators": [
+            {
+              "__class__": "VariableDeclarator",
+              "name": "API_URL",
+              "dimensions": [],
+              "initializer": {
+                "__class__": "Literal",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "selectors": [],
+                "value": "\"https://api.crossref.org/works\""
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "FieldDeclaration",
+          "modifiers": "{'private', 'final', 'static'}",
+          "annotations": [],
+          "type": {
+            "__class__": "ReferenceType",
+            "name": "RemoveBracesFormatter",
+            "dimensions": []
+          },
+          "declarators": [
+            {
+              "__class__": "VariableDeclarator",
+              "name": "REMOVE_BRACES_FORMATTER",
+              "dimensions": [],
+              "initializer": {
+                "__class__": "ClassCreator",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "selectors": [],
+                "type": {
+                  "__class__": "ReferenceType",
+                  "name": "RemoveBracesFormatter"
+                },
+                "arguments": []
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "getName",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "Literal",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "selectors": [],
+                "value": "\"Crossref\""
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "URL",
+            "dimensions": []
+          },
+          "name": "getURLForEntry",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "BibEntry",
+                "dimensions": []
+              },
+              "name": "entry",
+              "varargs": false
+            }
+          ],
+          "throws": [
+            "URISyntaxException",
+            "MalformedURLException",
+            "FetcherException"
+          ],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "URIBuilder",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "uriBuilder",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "URIBuilder"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "API_URL"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "entry",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "LambdaExpression",
+                        "parameters": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "title"
+                          }
+                        ],
+                        "body": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "uriBuilder",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"query.title\""
+                            },
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "title"
+                            }
+                          ],
+                          "member": "addParameter"
+                        }
+                      }
+                    ],
+                    "member": "ifPresent"
+                  }
+                ],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "StandardField",
+                    "selectors": [],
+                    "member": "TITLE"
+                  }
+                ],
+                "member": "getLatexFreeField"
+              }
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "entry",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "LambdaExpression",
+                        "parameters": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "author"
+                          }
+                        ],
+                        "body": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "uriBuilder",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"query.author\""
+                            },
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "author"
+                            }
+                          ],
+                          "member": "addParameter"
+                        }
+                      }
+                    ],
+                    "member": "ifPresent"
+                  }
+                ],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "StandardField",
+                    "selectors": [],
+                    "member": "AUTHOR"
+                  }
+                ],
+                "member": "getLatexFreeField"
+              }
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "entry",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "LambdaExpression",
+                        "parameters": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "year"
+                          }
+                        ],
+                        "body": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "uriBuilder",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"filter\""
+                            },
+                            {
+                              "__class__": "BinaryOperation",
+                              "operator": "+",
+                              "operandl": {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"from-pub-date:\""
+                              },
+                              "operandr": {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "year"
+                              }
+                            }
+                          ],
+                          "member": "addParameter"
+                        }
+                      }
+                    ],
+                    "member": "ifPresent"
+                  }
+                ],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "StandardField",
+                    "selectors": [],
+                    "member": "YEAR"
+                  }
+                ],
+                "member": "getLatexFreeField"
+              }
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "\"rows\""
+                  },
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "\"20\""
+                  }
+                ],
+                "member": "addParameter"
+              }
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "\"offset\""
+                  },
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "\"0\""
+                  }
+                ],
+                "member": "addParameter"
+              }
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
+                    "member": "toURL"
+                  }
+                ],
+                "arguments": [],
+                "member": "build"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "URL",
+            "dimensions": []
+          },
+          "name": "getURLForQuery",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "QueryNode",
+                "dimensions": []
+              },
+              "name": "luceneQuery",
+              "varargs": false
+            }
+          ],
+          "throws": [
+            "URISyntaxException",
+            "MalformedURLException",
+            "FetcherException"
+          ],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "URIBuilder",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "uriBuilder",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "URIBuilder"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "API_URL"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "StatementExpression",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [],
+                "arguments": [
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "\"query\""
+                  },
+                  {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "arguments": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "luceneQuery"
+                          }
+                        ],
+                        "member": "transformLuceneQuery"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"\""
+                          }
+                        ],
+                        "member": "orElse"
+                      }
+                    ],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "DefaultQueryTransformer"
+                    },
+                    "arguments": []
+                  }
+                ],
+                "member": "addParameter"
+              }
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
+                    "member": "toURL"
+                  }
+                ],
+                "arguments": [],
+                "member": "build"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "URL",
+            "dimensions": []
+          },
+          "name": "getUrlForIdentifier",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "String",
+                "dimensions": []
+              },
+              "name": "identifier",
+              "varargs": false
+            }
+          ],
+          "throws": [
+            "URISyntaxException",
+            "MalformedURLException",
+            "FetcherException"
+          ],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "URIBuilder",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "uriBuilder",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "URIBuilder"
+                    },
+                    "arguments": [
+                      {
+                        "__class__": "BinaryOperation",
+                        "operator": "+",
+                        "operandl": {
+                          "__class__": "BinaryOperation",
+                          "operator": "+",
+                          "operandl": {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "API_URL"
+                          },
+                          "operandr": {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"/\""
+                          }
+                        },
+                        "operandr": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "identifier"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "uriBuilder",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
+                    "member": "toURL"
+                  }
+                ],
+                "arguments": [],
+                "member": "build"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "Parser",
+            "dimensions": []
+          },
+          "name": "getParser",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "LambdaExpression",
+                "parameters": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "inputStream"
+                  }
+                ],
+                "body": [
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "JSONObject",
+                      "dimensions": []
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "response",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "JsonReader",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "inputStream"
+                            }
+                          ],
+                          "member": "toJsonObject"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "IfStatement",
+                    "condition": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "response",
+                      "selectors": [],
+                      "arguments": [],
+                      "member": "isEmpty"
+                    },
+                    "then_statement": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "ReturnStatement",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "Collections",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "emptyList"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "Assignment",
+                      "expressionl": {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "member": "response"
+                      },
+                      "value": {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "response",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"message\""
+                          }
+                        ],
+                        "member": "getJSONObject"
+                      },
+                      "type": "="
+                    }
+                  },
+                  {
+                    "__class__": "IfStatement",
+                    "condition": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "response",
+                      "selectors": [],
+                      "arguments": [],
+                      "member": "isEmpty"
+                    },
+                    "then_statement": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "ReturnStatement",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "Collections",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "emptyList"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "__class__": "IfStatement",
+                    "condition": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [
+                        "!"
+                      ],
+                      "postfix_operators": [],
+                      "qualifier": "response",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "Literal",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "value": "\"items\""
+                        }
+                      ],
+                      "member": "has"
+                    },
+                    "then_statement": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "LocalVariableDeclaration",
+                          "modifiers": "set()",
+                          "annotations": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "BibEntry",
+                            "dimensions": []
+                          },
+                          "declarators": [
+                            {
+                              "__class__": "VariableDeclarator",
+                              "name": "entry",
+                              "dimensions": [],
+                              "initializer": {
+                                "__class__": "MethodInvocation",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "arguments": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "response"
+                                  }
+                                ],
+                                "member": "jsonItemToBibEntry"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "__class__": "ReturnStatement",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "Collections",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "entry"
+                              }
+                            ],
+                            "member": "singletonList"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "JSONArray",
+                      "dimensions": []
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "items",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "response",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"items\""
+                            }
+                          ],
+                          "member": "getJSONArray"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "List",
+                      "dimensions": [],
+                      "arguments": [
+                        {
+                          "__class__": "TypeArgument",
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "BibEntry",
+                            "dimensions": []
+                          }
+                        }
+                      ]
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "entries",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "ClassCreator",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "ArrayList",
+                            "arguments": []
+                          },
+                          "arguments": [
+                            {
+                              "__class__": "MethodInvocation",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "items",
+                              "selectors": [],
+                              "arguments": [],
+                              "member": "length"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "ForStatement",
+                    "control": {
+                      "__class__": "ForControl",
+                      "init": {
+                        "__class__": "VariableDeclaration",
+                        "modifiers": "set()",
+                        "annotations": [],
+                        "type": {
+                          "__class__": "BasicType",
+                          "name": "int",
+                          "dimensions": []
+                        },
+                        "declarators": [
+                          {
+                            "__class__": "VariableDeclarator",
+                            "name": "i",
+                            "initializer": {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "0"
+                            }
+                          }
+                        ]
+                      },
+                      "condition": {
+                        "__class__": "BinaryOperation",
+                        "operator": "<",
+                        "operandl": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "i"
+                        },
+                        "operandr": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "items",
+                          "selectors": [],
+                          "arguments": [],
+                          "member": "length"
+                        }
+                      },
+                      "update": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [
+                            "++"
+                          ],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "i"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "LocalVariableDeclaration",
+                          "modifiers": "set()",
+                          "annotations": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "JSONObject",
+                            "dimensions": []
+                          },
+                          "declarators": [
+                            {
+                              "__class__": "VariableDeclarator",
+                              "name": "item",
+                              "dimensions": [],
+                              "initializer": {
+                                "__class__": "MethodInvocation",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "items",
+                                "selectors": [],
+                                "arguments": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "i"
+                                  }
+                                ],
+                                "member": "getJSONObject"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "__class__": "LocalVariableDeclaration",
+                          "modifiers": "set()",
+                          "annotations": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "BibEntry",
+                            "dimensions": []
+                          },
+                          "declarators": [
+                            {
+                              "__class__": "VariableDeclarator",
+                              "name": "entry",
+                              "dimensions": [],
+                              "initializer": {
+                                "__class__": "MethodInvocation",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "arguments": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "item"
+                                  }
+                                ],
+                                "member": "jsonItemToBibEntry"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "__class__": "StatementExpression",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "entries",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "entry"
+                              }
+                            ],
+                            "member": "add"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "__class__": "ReturnStatement",
+                    "expression": {
+                      "__class__": "MemberReference",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "",
+                      "selectors": [],
+                      "member": "entries"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "name": "doPostCleanup",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "BibEntry",
+                "dimensions": []
+              },
+              "name": "entry",
+              "varargs": false
+            }
+          ],
+          "body": [
+            {
+              "__class__": "IfStatement",
+              "condition": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "entry",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "entry",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "StandardField",
+                            "selectors": [],
+                            "member": "SUBTITLE"
+                          }
+                        ],
+                        "member": "getField"
+                      }
+                    ],
+                    "member": "equals"
+                  }
+                ],
+                "arguments": [
+                  {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "StandardField",
+                    "selectors": [],
+                    "member": "TITLE"
+                  }
+                ],
+                "member": "getField"
+              },
+              "then_statement": {
+                "__class__": "BlockStatement",
+                "statements": [
+                  {
+                    "__class__": "StatementExpression",
+                    "expression": {
+                      "__class__": "ClassCreator",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "selectors": [
+                        {
+                          "__class__": "MethodInvocation",
+                          "arguments": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "entry"
+                            }
+                          ],
+                          "member": "cleanup"
+                        }
+                      ],
+                      "type": {
+                        "__class__": "ReferenceType",
+                        "name": "FieldFormatterCleanup"
+                      },
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "StandardField",
+                          "selectors": [],
+                          "member": "SUBTITLE"
+                        },
+                        {
+                          "__class__": "ClassCreator",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "ClearFormatter"
+                          },
+                          "arguments": []
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'private'}",
+          "annotations": [],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "BibEntry",
+            "dimensions": []
+          },
+          "name": "jsonItemToBibEntry",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "JSONObject",
+                "dimensions": []
+              },
+              "name": "item",
+              "varargs": false
+            }
+          ],
+          "throws": [
+            "ParseException"
+          ],
+          "body": [
+            {
+              "__class__": "TryStatement",
+              "block": [
+                {
+                  "__class__": "LocalVariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "ReferenceType",
+                    "name": "BibEntry",
+                    "dimensions": []
+                  },
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "entry",
+                      "dimensions": [],
+                      "initializer": {
+                        "__class__": "ClassCreator",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "type": {
+                          "__class__": "ReferenceType",
+                          "name": "BibEntry"
+                        },
+                        "arguments": []
+                      }
+                    }
+                  ]
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"type\""
+                              }
+                            ],
+                            "member": "getString"
+                          }
+                        ],
+                        "member": "convertType"
+                      }
+                    ],
+                    "member": "setType"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "TITLE"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Optional",
+                        "selectors": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "member": "optString"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"\""
+                              }
+                            ],
+                            "member": "orElse"
+                          }
+                        ],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"title\""
+                              }
+                            ],
+                            "member": "optJSONArray"
+                          }
+                        ],
+                        "member": "ofNullable"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "SUBTITLE"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Optional",
+                        "selectors": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "member": "optString"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"\""
+                              }
+                            ],
+                            "member": "orElse"
+                          }
+                        ],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"subtitle\""
+                              }
+                            ],
+                            "member": "optJSONArray"
+                          }
+                        ],
+                        "member": "ofNullable"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "AUTHOR"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"author\""
+                              }
+                            ],
+                            "member": "optJSONArray"
+                          }
+                        ],
+                        "member": "toAuthors"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "YEAR"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Optional",
+                        "selectors": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "\"date-parts\""
+                                    }
+                                  ],
+                                  "member": "optJSONArray"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "member": "optJSONArray"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "member": "optInt"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "year"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "Integer",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "MemberReference",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "qualifier": "",
+                                      "selectors": [],
+                                      "member": "year"
+                                    }
+                                  ],
+                                  "member": "toString"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"\""
+                              }
+                            ],
+                            "member": "orElse"
+                          }
+                        ],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"published-print\""
+                              }
+                            ],
+                            "member": "optJSONObject"
+                          }
+                        ],
+                        "member": "ofNullable"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "DOI"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "item",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"DOI\""
+                          }
+                        ],
+                        "member": "getString"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "PAGES"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "item",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"page\""
+                          }
+                        ],
+                        "member": "optString"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "VOLUME"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "item",
+                        "selectors": [],
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"volume\""
+                          }
+                        ],
+                        "member": "optString"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "StatementExpression",
+                  "expression": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "entry",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MemberReference",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "StandardField",
+                        "selectors": [],
+                        "member": "ISSN"
+                      },
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "Optional",
+                        "selectors": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "LambdaExpression",
+                                "parameters": [
+                                  {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "array"
+                                  }
+                                ],
+                                "body": {
+                                  "__class__": "MethodInvocation",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "array",
+                                  "selectors": [],
+                                  "arguments": [
+                                    {
+                                      "__class__": "Literal",
+                                      "prefix_operators": [],
+                                      "postfix_operators": [],
+                                      "selectors": [],
+                                      "value": "0"
+                                    }
+                                  ],
+                                  "member": "getString"
+                                }
+                              }
+                            ],
+                            "member": "map"
+                          },
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"\""
+                              }
+                            ],
+                            "member": "orElse"
+                          }
+                        ],
+                        "arguments": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "item",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"ISSN\""
+                              }
+                            ],
+                            "member": "optJSONArray"
+                          }
+                        ],
+                        "member": "ofNullable"
+                      }
+                    ],
+                    "member": "setField"
+                  }
+                },
+                {
+                  "__class__": "ReturnStatement",
+                  "expression": {
+                    "__class__": "MemberReference",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "",
+                    "selectors": [],
+                    "member": "entry"
+                  }
+                }
+              ],
+              "catches": [
+                {
+                  "__class__": "CatchClause",
+                  "parameter": {
+                    "__class__": "CatchClauseParameter",
+                    "types": [
+                      "JSONException"
+                    ],
+                    "name": "exception"
+                  },
+                  "block": [
+                    {
+                      "__class__": "ThrowStatement",
+                      "expression": {
+                        "__class__": "ClassCreator",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "selectors": [],
+                        "type": {
+                          "__class__": "ReferenceType",
+                          "name": "ParseException"
+                        },
+                        "arguments": [
+                          {
+                            "__class__": "Literal",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "selectors": [],
+                            "value": "\"CrossRef API JSON format has changed\""
+                          },
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "exception"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'private'}",
+          "annotations": [],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "toAuthors",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "JSONArray",
+                "dimensions": []
+              },
+              "name": "authors",
+              "varargs": false
+            }
+          ],
+          "body": [
+            {
+              "__class__": "IfStatement",
+              "condition": {
+                "__class__": "BinaryOperation",
+                "operator": "==",
+                "operandl": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "authors"
+                },
+                "operandr": {
+                  "__class__": "Literal",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "selectors": [],
+                  "value": "null"
+                }
+              },
+              "then_statement": {
+                "__class__": "BlockStatement",
+                "statements": [
+                  {
+                    "__class__": "ReturnStatement",
+                    "expression": {
+                      "__class__": "Literal",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "selectors": [],
+                      "value": "\"\""
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "IntStream",
+                "selectors": [
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "MethodReference",
+                        "expression": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "authors"
+                        },
+                        "method": {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "getJSONObject"
+                        },
+                        "type_arguments": []
+                      }
+                    ],
+                    "member": "mapToObj"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "LambdaExpression",
+                        "parameters": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "",
+                            "selectors": [],
+                            "member": "author"
+                          }
+                        ],
+                        "body": {
+                          "__class__": "ClassCreator",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "selectors": [],
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "Author"
+                          },
+                          "arguments": [
+                            {
+                              "__class__": "MethodInvocation",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "author",
+                              "selectors": [],
+                              "arguments": [
+                                {
+                                  "__class__": "Literal",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "selectors": [],
+                                  "value": "\"given\""
+                                },
+                                {
+                                  "__class__": "Literal",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "selectors": [],
+                                  "value": "\"\""
+                                }
+                              ],
+                              "member": "optString"
+                            },
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"\""
+                            },
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"\""
+                            },
+                            {
+                              "__class__": "MethodInvocation",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "author",
+                              "selectors": [],
+                              "arguments": [
+                                {
+                                  "__class__": "Literal",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "selectors": [],
+                                  "value": "\"family\""
+                                },
+                                {
+                                  "__class__": "Literal",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "selectors": [],
+                                  "value": "\"\""
+                                }
+                              ],
+                              "member": "optString"
+                            },
+                            {
+                              "__class__": "Literal",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "selectors": [],
+                              "value": "\"\""
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "member": "map"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "AuthorList",
+                        "selectors": [],
+                        "arguments": [],
+                        "member": "collect"
+                      }
+                    ],
+                    "member": "collect"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "arguments": [],
+                    "member": "getAsFirstLastNamesWithAnd"
+                  }
+                ],
+                "arguments": [
+                  {
+                    "__class__": "Literal",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "value": "0"
+                  },
+                  {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "authors",
+                    "selectors": [],
+                    "arguments": [],
+                    "member": "length"
+                  }
+                ],
+                "member": "range"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'private'}",
+          "annotations": [],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "EntryType",
+            "dimensions": []
+          },
+          "name": "convertType",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "String",
+                "dimensions": []
+              },
+              "name": "type",
+              "varargs": false
+            }
+          ],
+          "body": [
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "TernaryExpression",
+                "condition": {
+                  "__class__": "MethodInvocation",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "type",
+                  "selectors": [],
+                  "arguments": [
+                    {
+                      "__class__": "Literal",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "selectors": [],
+                      "value": "\"journal-article\""
+                    }
+                  ],
+                  "member": "equals"
+                },
+                "if_true": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "StandardEntryType",
+                  "selectors": [],
+                  "member": "Article"
+                },
+                "if_false": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "StandardEntryType",
+                  "selectors": [],
+                  "member": "Misc"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "Optional",
+            "dimensions": [],
+            "arguments": [
+              {
+                "__class__": "TypeArgument",
+                "type": {
+                  "__class__": "ReferenceType",
+                  "name": "DOI",
+                  "dimensions": []
+                }
+              }
+            ]
+          },
+          "name": "extractIdentifier",
+          "parameters": [
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "BibEntry",
+                "dimensions": []
+              },
+              "name": "inputEntry",
+              "varargs": false
+            },
+            {
+              "__class__": "FormalParameter",
+              "modifiers": "set()",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "List",
+                "dimensions": [],
+                "arguments": [
+                  {
+                    "__class__": "TypeArgument",
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "BibEntry",
+                      "dimensions": []
+                    }
+                  }
+                ]
+              },
+              "name": "fetchedEntries",
+              "varargs": false
+            }
+          ],
+          "throws": [
+            "FetcherException"
+          ],
+          "body": [
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "{'final'}",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "String",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "entryTitle",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "MethodInvocation",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "qualifier": "REMOVE_BRACES_FORMATTER",
+                    "selectors": [],
+                    "arguments": [
+                      {
+                        "__class__": "MethodInvocation",
+                        "prefix_operators": [],
+                        "postfix_operators": [],
+                        "qualifier": "inputEntry",
+                        "selectors": [
+                          {
+                            "__class__": "MethodInvocation",
+                            "arguments": [
+                              {
+                                "__class__": "Literal",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "selectors": [],
+                                "value": "\"\""
+                              }
+                            ],
+                            "member": "orElse"
+                          }
+                        ],
+                        "arguments": [
+                          {
+                            "__class__": "MemberReference",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "StandardField",
+                            "selectors": [],
+                            "member": "TITLE"
+                          }
+                        ],
+                        "member": "getLatexFreeField"
+                      }
+                    ],
+                    "member": "format"
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "LocalVariableDeclaration",
+              "modifiers": "{'final'}",
+              "annotations": [],
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "StringSimilarity",
+                "dimensions": []
+              },
+              "declarators": [
+                {
+                  "__class__": "VariableDeclarator",
+                  "name": "stringSimilarity",
+                  "dimensions": [],
+                  "initializer": {
+                    "__class__": "ClassCreator",
+                    "prefix_operators": [],
+                    "postfix_operators": [],
+                    "selectors": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "StringSimilarity"
+                    },
+                    "arguments": []
+                  }
+                }
+              ]
+            },
+            {
+              "__class__": "ForStatement",
+              "control": {
+                "__class__": "EnhancedForControl",
+                "var": {
+                  "__class__": "VariableDeclaration",
+                  "modifiers": "set()",
+                  "annotations": [],
+                  "type": {
+                    "__class__": "ReferenceType",
+                    "name": "BibEntry",
+                    "dimensions": []
+                  },
+                  "declarators": [
+                    {
+                      "__class__": "VariableDeclarator",
+                      "name": "fetchedEntry"
+                    }
+                  ]
+                },
+                "iterable": {
+                  "__class__": "MemberReference",
+                  "prefix_operators": [],
+                  "postfix_operators": [],
+                  "qualifier": "",
+                  "selectors": [],
+                  "member": "fetchedEntries"
+                }
+              },
+              "body": {
+                "__class__": "BlockStatement",
+                "statements": [
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "Optional",
+                      "dimensions": [],
+                      "arguments": [
+                        {
+                          "__class__": "TypeArgument",
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "String",
+                            "dimensions": []
+                          }
+                        }
+                      ]
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "dataTitle",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "fetchedEntry",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "StandardField",
+                              "selectors": [],
+                              "member": "TITLE"
+                            }
+                          ],
+                          "member": "getField"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "IfStatement",
+                    "condition": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "OptionalUtil",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "dataTitle"
+                        },
+                        {
+                          "__class__": "LambdaExpression",
+                          "parameters": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "title"
+                            }
+                          ],
+                          "body": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "stringSimilarity",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "entryTitle"
+                              },
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "title"
+                              }
+                            ],
+                            "member": "isSimilar"
+                          }
+                        }
+                      ],
+                      "member": "isPresentAnd"
+                    },
+                    "then_statement": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "ReturnStatement",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "fetchedEntry",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "getDOI"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "Optional",
+                      "dimensions": [],
+                      "arguments": [
+                        {
+                          "__class__": "TypeArgument",
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "String",
+                            "dimensions": []
+                          }
+                        }
+                      ]
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "dataSubtitle",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "fetchedEntry",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "StandardField",
+                              "selectors": [],
+                              "member": "SUBTITLE"
+                            }
+                          ],
+                          "member": "getField"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "LocalVariableDeclaration",
+                    "modifiers": "set()",
+                    "annotations": [],
+                    "type": {
+                      "__class__": "ReferenceType",
+                      "name": "Optional",
+                      "dimensions": [],
+                      "arguments": [
+                        {
+                          "__class__": "TypeArgument",
+                          "type": {
+                            "__class__": "ReferenceType",
+                            "name": "String",
+                            "dimensions": []
+                          }
+                        }
+                      ]
+                    },
+                    "declarators": [
+                      {
+                        "__class__": "VariableDeclarator",
+                        "name": "dataWithSubTitle",
+                        "dimensions": [],
+                        "initializer": {
+                          "__class__": "MethodInvocation",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "OptionalUtil",
+                          "selectors": [],
+                          "arguments": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "dataTitle"
+                            },
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "dataSubtitle"
+                            },
+                            {
+                              "__class__": "LambdaExpression",
+                              "parameters": [
+                                {
+                                  "__class__": "InferredFormalParameter",
+                                  "name": "title"
+                                },
+                                {
+                                  "__class__": "InferredFormalParameter",
+                                  "name": "subtitle"
+                                }
+                              ],
+                              "body": {
+                                "__class__": "BinaryOperation",
+                                "operator": "+",
+                                "operandl": {
+                                  "__class__": "BinaryOperation",
+                                  "operator": "+",
+                                  "operandl": {
+                                    "__class__": "MemberReference",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "qualifier": "",
+                                    "selectors": [],
+                                    "member": "title"
+                                  },
+                                  "operandr": {
+                                    "__class__": "Literal",
+                                    "prefix_operators": [],
+                                    "postfix_operators": [],
+                                    "selectors": [],
+                                    "value": "\" \""
+                                  }
+                                },
+                                "operandr": {
+                                  "__class__": "MemberReference",
+                                  "prefix_operators": [],
+                                  "postfix_operators": [],
+                                  "qualifier": "",
+                                  "selectors": [],
+                                  "member": "subtitle"
+                                }
+                              }
+                            }
+                          ],
+                          "member": "combine"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "__class__": "IfStatement",
+                    "condition": {
+                      "__class__": "MethodInvocation",
+                      "prefix_operators": [],
+                      "postfix_operators": [],
+                      "qualifier": "OptionalUtil",
+                      "selectors": [],
+                      "arguments": [
+                        {
+                          "__class__": "MemberReference",
+                          "prefix_operators": [],
+                          "postfix_operators": [],
+                          "qualifier": "",
+                          "selectors": [],
+                          "member": "dataWithSubTitle"
+                        },
+                        {
+                          "__class__": "LambdaExpression",
+                          "parameters": [
+                            {
+                              "__class__": "MemberReference",
+                              "prefix_operators": [],
+                              "postfix_operators": [],
+                              "qualifier": "",
+                              "selectors": [],
+                              "member": "titleWithSubtitle"
+                            }
+                          ],
+                          "body": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "stringSimilarity",
+                            "selectors": [],
+                            "arguments": [
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "entryTitle"
+                              },
+                              {
+                                "__class__": "MemberReference",
+                                "prefix_operators": [],
+                                "postfix_operators": [],
+                                "qualifier": "",
+                                "selectors": [],
+                                "member": "titleWithSubtitle"
+                              }
+                            ],
+                            "member": "isSimilar"
+                          }
+                        }
+                      ],
+                      "member": "isPresentAnd"
+                    },
+                    "then_statement": {
+                      "__class__": "BlockStatement",
+                      "statements": [
+                        {
+                          "__class__": "ReturnStatement",
+                          "expression": {
+                            "__class__": "MethodInvocation",
+                            "prefix_operators": [],
+                            "postfix_operators": [],
+                            "qualifier": "fetchedEntry",
+                            "selectors": [],
+                            "arguments": [],
+                            "member": "getDOI"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "MethodInvocation",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "qualifier": "Optional",
+                "selectors": [],
+                "arguments": [],
+                "member": "empty"
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "MethodDeclaration",
+          "modifiers": "{'public'}",
+          "annotations": [
+            {
+              "__class__": "Annotation",
+              "name": "Override"
+            }
+          ],
+          "return_type": {
+            "__class__": "ReferenceType",
+            "name": "String",
+            "dimensions": []
+          },
+          "name": "getIdentifierName",
+          "parameters": [],
+          "body": [
+            {
+              "__class__": "ReturnStatement",
+              "expression": {
+                "__class__": "Literal",
+                "prefix_operators": [],
+                "postfix_operators": [],
+                "selectors": [],
+                "value": "\"DOI\""
+              }
+            }
+          ]
+        }
+      ],
+      "implements": [
+        {
+          "__class__": "ReferenceType",
+          "name": "IdParserFetcher",
+          "dimensions": [],
+          "arguments": [
+            {
+              "__class__": "TypeArgument",
+              "type": {
+                "__class__": "ReferenceType",
+                "name": "DOI",
+                "dimensions": []
+              }
+            }
+          ]
+        },
+        {
+          "__class__": "ReferenceType",
+          "name": "EntryBasedParserFetcher",
+          "dimensions": []
+        },
+        {
+          "__class__": "ReferenceType",
+          "name": "SearchBasedParserFetcher",
+          "dimensions": []
+        },
+        {
+          "__class__": "ReferenceType",
+          "name": "IdBasedParserFetcher",
+          "dimensions": []
+        }
+      ]
+    },
     {
       "__class__": "ClassDeclaration",
       "modifiers": "{'public'}",

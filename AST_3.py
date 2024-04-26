@@ -1,39 +1,6 @@
 import json
 from g4f.client import Client
 
-options = {
-    "Application": "third party apps or plugins for specific use attached to the system",
-    "Application Performance Manager": "monitors performance or benchmark",
-    "Big Data": "API's that deal with storing large amounts of data. with variety of formats",
-    "Cloud": "APUs for software and services that run on the Internet",
-    "Computer Graphics": "Manipulating visual content",
-    "Data Structure": "Data structures patterns (e.g., collections, lists, trees)",
-    "Databases": "Databases or metadata",
-    "Software Development and IT": "Libraries for version control, continuous integration and continuous delivery",
-    "Error Handling": "response and recovery procedures from error conditions",
-    "Event Handling": "answers to event like listeners",
-    "Geographic Information System": "Geographically referenced information",
-    "Input/Output": "read, write data",
-    "Interpreter": "compiler or interpreter features",
-    "Internationalization": "integrate and infuse international, intercultural, and global dimensions",
-    "Logic": "frameworks, patterns like commands, controls, or architecture-oriented classes",
-    "Language": "internal language features and conversions",
-    "Logging": "log registry for the app",
-    "Machine Learning": "ML support like build a model based on training data",
-    "Microservices/Services": "Independently deployable smaller services. Interface between two different applications so that they can communicate with each other",
-    "Multimedia": "Representation of information with text, audio, video",
-    "Multithread": "Support for concurrent execution",
-    "Natural Language Processing": "Process and analyze natural language data",
-    "Network": "Web protocols, sockets RMI APIs",
-    "Operating System": "APIs to access and manage a computer's resources",
-    "Parser": "Breaks down data into recognized pieces for further analysis",
-    "Search": "API for web searching",
-    "Security": "Crypto and secure protocols",
-    "Setup": "Internal app configurations",
-    "User Interface": "Defines forms, screens, visual controls",
-    "Utility": "third party libraries for general use",
-    "Test": "test automation"
-}
 
 def extract_functions(ast):
     functions = set()
@@ -80,46 +47,8 @@ with open('ast.json', 'r') as file:
 unique_class = extract_unique_class(ast)
 
 # Initialize the file for writing
-with open('output3.txt', 'w') as output_file:
+with open('output4.txt', 'w') as output_file:
     client = Client()
-    messages = [
-        {"role": "system",
-         "content": "You are attempting to classify the Java classes into one of the 31 given options"},
-        {"role": "system",
-         "content": "As you answering, only answer one simple word"},
-        {"role": "system",
-         "content": "Answer in the format of: Class (the given class) - LLM-domain - simulated domain"}
-    ]
-
-    def ask_gpt(classes):
-        # Construct the prompt with the object description and option descriptions
-        prompt = f"Here's the list of LLM domain options:\n {options}\n"
-        prompt += "What is the LLM domain and the simulated domain of: \n"
-        for class_info in classes:
-            prompt += class_info + ", "
-        prompt += "X is a created class in the Java code"
-        prompt += "Please pick one of the 31 options for the LLM domain, and one for the simulated domain for each class"
-        prompt += " and a sentence to give a reasoning for your choice"
-        prompt += " the answers should be in the form of:\n"
-        prompt += " Classes: \n- Chosen LLM-domain\n - Simulated Domain\n - Reasoning in one sentence "
-        messages.append({"role": "user", "content": prompt})
-        response = client.chat.completions.create(
-            model="gpt-4-turbo",
-            messages=messages,
-            stream=True
-        )
-        return response
-
-    gpt_response = ask_gpt(unique_class)
-    counter = 0
-    answer = ""
-    for chunk in gpt_response:
-        if chunk.choices[0].delta.content:
-            answer += (chunk.choices[0].delta.content.strip('*') or "")
-
-    # Write the classification results to the file
-    output_file.write("Classification Results:\n")
-    output_file.write(answer + "\n")
 
     def extract_classes_and_functions(ast_tree, imports):
         classes_and_functions = {}
@@ -183,6 +112,9 @@ with open('output3.txt', 'w') as output_file:
         # Extracting the second part from each tuple
         result += list(functions[1])
 
+    unique_result = set(result)
+    result = list(unique_result)
+
     messages = [
         {"role": "system",
          "content": "You are attempting to give me a summary of these functions"},
@@ -192,17 +124,54 @@ with open('output3.txt', 'w') as output_file:
          "content": "Answer in the format of: function - class it belongs to - summary of the function"}
     ]
 
+
+
+    def split_set(set_name):
+        if len(set_name) > 10:
+            # Calculate the size of each subset
+            subset_size = len(set_name) // 3
+
+            # Convert set to list to allow indexing
+            set_list = list(set_name)
+
+            # Split the set into three subsets
+            subset1 = set(set_list[:subset_size])
+            subset2 = set(set_list[subset_size:2 * subset_size])
+            subset3 = set(set_list[2 * subset_size:])
+
+            return subset1, subset2, subset3
+        else:
+            print("Set size is not bigger than 10.")
+            return None
+
+
+    if len(result) > 10:
+        subset1, subset2, subset3 = split_set(result)
+
+
     def ask_gpt_function(functions):
         # Construct the prompt with the object description and option descriptions
-        prompt = "Using the classes from the previous question "
+        prompt = "Answer this questions as the form I have given you, make sure to stay with the format I gave. "
         prompt += "I want you to list these Java functions: "
         for func_info in functions:
             prompt += func_info + ", "
 
-        prompt += "in the form of:\n"
-        prompt += "Functions— function name - the api its belongs to - the summary with 1 sentence."
-        prompt += "For example: createStatement() - java.util.Connection - <summary of createStatement()>"
-        prompt += "Make sure to only fit one class for one function, if there are many classes, only pick one"
+        prompt += "in the format of:\n"
+        prompt += (" = [method name, the java class that the method belongs to (make sure to give its fully qualitified name)"
+                   ", class context (1 sentence summary), "
+                   "class topic (Hypothetical topics based on the general utility of the function/API)"
+                   ", function_context (1 sentence summary), function topic"
+                   "Large language model domain of the API class, the simulated domain of the API class, "
+                   "the Large Language Model of the method, the simulated domain of the method] ")
+        prompt += ("For example: "
+                   "= [getInstance, java.util.Calendar"
+                   ", Provides methods to manipulate date and time, "
+                   "Date and Time,"
+                   "Retrieves a Calendar instance, Date and Time, "
+                   "Utility, Date and Time, "
+                   "Data Structure, Date and Time] ")
+
+        prompt += "Make sure you stay with the format of the example I have given you!!!"
         messages.append({"role": "user", "content": prompt})
         response = client.chat.completions.create(
             model="gpt-4-turbo",
@@ -211,14 +180,32 @@ with open('output3.txt', 'w') as output_file:
         )
         return response
 
-    gpt_response = ask_gpt_function(result)
+
     answer = ""
-    for chunk in gpt_response:
-        if chunk.choices[0].delta.content:
-            answer += (chunk.choices[0].delta.content.strip('*') or "")
+    if subset1:
+        gpt_response = ask_gpt_function(subset1)
+        for chunk in gpt_response:
+            if chunk.choices[0].delta.content:
+                answer += (chunk.choices[0].delta.content.strip('*') or "")
+
+    print("--------- Completed 1/3 ----------")
+    if subset2:
+        gpt_response = ask_gpt_function(subset2)
+        for chunk in gpt_response:
+            if chunk.choices[0].delta.content:
+                answer += (chunk.choices[0].delta.content.strip('*') or "")
+
+    print("--------- Completed 2/3 ----------")
+    if subset3:
+        gpt_response = ask_gpt_function(subset3)
+        for chunk in gpt_response:
+            if chunk.choices[0].delta.content:
+                answer += (chunk.choices[0].delta.content.strip('*') or "")
+
+    print("--------- Completed 3/3 ----------")
 
     # Write the function summaries to the file
     output_file.write("\nFunction Summaries:\n")
     output_file.write(answer + "\n")
 
-print("Output written to output3.txt")
+print("******** Output written to output4.txt ********")
