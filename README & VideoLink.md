@@ -5,8 +5,6 @@
 
 
 ## Documemtation
-    + 'backup' folder: for backing up the pgadmin4 database
-
     + 'Java code' folder: including the input Java code that would be used for the project
 
     + 'outputTable' folder: the output table:
@@ -21,6 +19,7 @@
 
         _ "ast.json": the abstract tree of the current Java code
         _ "output4.txt": result used for the pgAdmin4 data from GPT-4
+        _ "finalBackUp": the backup file for the server
 
 ## Running the program
 
@@ -30,4 +29,10 @@
 4/ Run "createTable.sql" in pgAdmin4 to clear the current database in pgAdmin4
 5/ Run "AST_5.py" which would recreate these tables with the new data (keep in mind you will need to change the credentials for psycopg2.connect according to your own pgAdmin4 server)
 
+## Backing up the server (this will bypass the running program section)
+
+1/ Open you pgAdmin4 and choose the server you want to restore the data
+2/ Right-Click on the server and choose restore
+3/ In the file name section choose "finalBackUp"
+4/ Hit "Restore"
 
